@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="#Benchmark tools
+
+ab – slow and single threaded, written in C
+apib – most of the features of ApacheBench (ab), also designed as a more modern replacem">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="YE WANG">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="benchmark tools for http/https/restAPI testing">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Let code talk">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>benchmark tools for http/https/restAPI testing - Let code talk</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ye's blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wy3148">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>benchmark tools for http/https/restAPI testing</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-09-05
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/benchmark-tools/">#benchmark tools</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>#Benchmark tools</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/ApacheBench" target="_blank" rel="noopener"><strong>ab</strong></a> – slow and single threaded, written in <code>C</code></li>
+<li><a href="https://github.com/apigee/apib" target="_blank" rel="noopener"><strong>apib</strong></a> – most of the features of ApacheBench (<code>ab</code>), also designed as a <a href="https://github.com/apigee/apib#design" target="_blank" rel="noopener">more modern replacement</a>, written in <code>C</code></li>
+<li><a href="https://github.com/h2non/baloo" target="_blank" rel="noopener"><strong>baloo</strong></a> – Expressive end-to-end HTTP API testing made easy, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/codesenberg/bombardier" target="_blank" rel="noopener"><strong>bombardier</strong></a> – Fast crossplatform HTTP benchmarking tool, written in Go (<code>golang</code>)</li>
+<li><a href="http://curl-loader.sourceforge.net/" target="_blank" rel="noopener"><strong>curl-loader</strong></a> – performance loading of various application services and traffic generation, written in <code>C</code></li>
+<li><a href="https://github.com/hagen1778/fasthttploader" target="_blank" rel="noopener"><strong>fasthttploader</strong></a> – benchmark (kinda ab) with autoadjustment and charts based on fasthttp library, write in Go (<code>golang</code>)</li>
+<li><a href="http://gatling.io" target="_blank" rel="noopener"><strong>gatling</strong></a> – High performance load testing framework based on Scala, Akka and Netty, write in <code>Scala</code></li>
+<li><a href="https://github.com/gophergala2016/goad" target="_blank" rel="noopener"><strong>goad</strong></a> – Goad is an AWS Lambda powered, highly distributed, load testing tool, write in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/cmpxchg16/gobench" target="_blank" rel="noopener"><strong>gobench</strong></a> – HTTP/HTTPS load testing and benchmarking tool, write in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/parkghost/gohttpbench" target="_blank" rel="noopener"><strong>gohttpbench</strong></a> – <code>ab</code>-like benchmark tool run on multi-core cpu, write in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/rakyll/hey" target="_blank" rel="noopener"><strong>hey</strong></a> – HTTP(S) load generator, ApacheBench (<code>ab</code>) replacement, formerly known as <a href="https://github.com/rakyll/boom" target="_blank" rel="noopener"><strong>rakyll/boom</strong></a>, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/arut/htstress" target="_blank" rel="noopener"><strong>htstress</strong></a> – multithreading high-load bechmarking services (&gt;5K rps), written in <code>C</code>/<code>Linux</code></li>
+<li><a href="https://github.com/httperf/httperf" target="_blank" rel="noopener"><strong>httperf</strong></a> – difficult configuration, slow and single threaded, written in <code>C</code></li>
+<li><a href="https://github.com/opsengine/inundator" target="_blank" rel="noopener"><strong>inundator</strong></a> – A simple and high-throughput HTTP flood program, written in <code>C</code>/<code>Linux</code></li>
+<li><a href="http://jmeter.apache.org/" target="_blank" rel="noopener"><strong>jmeter</strong></a> – Apache  JMeter™, pure application designed to load test performance both on static and dynamic resources, written in <code>Java</code></li>
+<li><a href="https://github.com/byorty/mgun" target="_blank" rel="noopener"><strong>mgun</strong></a> – A modern tool for load testing HTTP servers, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/X4/pounce" target="_blank" rel="noopener"><strong>pounce</strong></a> – evented, but results fluctuate, it’s sometimes faster than <code>htstress</code>, written in <code>C</code></li>
+<li><a href="http://www.joedog.org/siege-home/" target="_blank" rel="noopener"><strong>siege</strong></a> – slow and single threaded, written in <code>C</code></li>
+<li><a href="https://github.com/ikruglov/slapper" target="_blank" rel="noopener"><strong>slapper</strong></a> – Simple load testing tool with real-time updated histogram of request timings, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/BuoyantIO/slow_cooker" target="_blank" rel="noopener"><strong>slow_cooker</strong></a> – A load tester focused on lifecycle issues and long-running tests, service with a predictable load and concurrency level for a long period of time, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/lubia/sniper" target="_blank" rel="noopener"><strong>sniper</strong></a> – powerful &amp; high-performance http load tester, written in Go (<code>golang</code>)</li>
+<li><a href="http://tsung.erlang-projects.org/" target="_blank" rel="noopener"><strong>tsung</strong></a> – Simulate stress users in order to test the scalability and performance of IP based client/server applications <code>HTTP</code>, <code>WebDAV</code>, <code>SOAP</code>, <code>PostgreSQL</code>, <code>MySQL</code>, <code>LDAP</code> and <code>Jabber</code>/<code>XMPP</code> servers, written in <code>Erlang</code></li>
+<li><a href="https://github.com/tsenart/vegeta" target="_blank" rel="noopener"><strong>vegeta</strong></a> – HTTP load testing tool and library, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/lighttpd/weighttp" target="_blank" rel="noopener"><strong>weighttp</strong></a> – multithreaded, but slower than htstress without keepalive, written in <code>C</code></li>
+<li><a href="https://github.com/wg/wrk" target="_blank" rel="noopener"><strong>wrk</strong></a> – multithreaded<del>, but doesn’t offer concurrent connections and a keepalive switch</del>, written in <code>C</code>/<code>Lua</code></li>
+<li><p><a href="https://github.com/giltene/wrk2" target="_blank" rel="noopener"><strong>wrk2</strong></a> – constant throughput, correct latency recording variant of wrk, written in <code>C</code>/<code>Lua</code></p>
+<pre><code>Concurrent connections are enabled with:
+  -c, --connections &lt;N&gt;  Connections to keep open
+And keepalive (which is default) can be disabled using:
+  -H &quot;Connection: close&quot;
+</code></pre></li>
+<li><a href="https://github.com/yandex/yandex-tank" target="_blank" rel="noopener"><strong>yandex-tank</strong></a> – Load and performance benchmark tool, written in <code>Python</code>/<code>C|C++|Asm</code> (<a href="https://github.com/yandex-load/phantom" target="_blank" rel="noopener">phantom</a>)</li>
+</ul>
+<h1 id="Toolkit-for-testing-debugging-HTTP-S-and-restAPI-RESTful"><a href="#Toolkit-for-testing-debugging-HTTP-S-and-restAPI-RESTful" class="headerlink" title="Toolkit for testing/debugging HTTP(S) and restAPI (RESTful)"></a>Toolkit for testing/debugging HTTP(S) and restAPI (RESTful)</h1><ul>
+<li><a href="https://github.com/astaxie/bat" target="_blank" rel="noopener"><strong>bat</strong></a> – Go implement CLI, cURL-like tool for humans, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/curl/curl" target="_blank" rel="noopener"><strong>curl</strong></a> – Powerful features command-line tool for transferring data specified with URL syntax, written in <code>C</code><ul>
+<li><a href="https://curlbuilder.com/" target="_blank" rel="noopener">Online curl command line builde</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/NickCarneiro/curlconverter" target="_blank" rel="noopener"><strong>curlconverter</strong></a> – convert curl commands to python, javascript, php</li>
+<li><a href="https://github.com/jkbrzt/httpie" target="_blank" rel="noopener"><strong>httpie</strong></a> – client, user-friendly curl replacement with intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, written in <code>Python</code></li>
+<li><a href="https://github.com/stedolan/jq" target="_blank" rel="noopener"><strong>jq</strong></a> – is a lightweight and flexible command-line JSON processor, written in <code>C</code></li>
+</ul>
+<h1 id="SaaS-PaaS"><a href="#SaaS-PaaS" class="headerlink" title="SaaS/PaaS"></a>SaaS/PaaS</h1><ul>
+<li><a href="https://www.blitz.io/" target="_blank" rel="noopener"><strong>blitz.io</strong></a> – an easy solution to load and performance testing from the Cloud. Test scaliability on websites, mobile, web apps and REST APIs.</li>
+<li><a href="https://blazemeter.com/" target="_blank" rel="noopener"><strong>BlazeMeter</strong></a> – offers a cross-enterprise test automation framework for the entire technical team (developers, devops, ops and QA) throughout the product development lifecycle. Run continuous or ‘on demand’ testing for APIs, mobile apps and websites. Run from the cloud, on-premise or as a hybrid solution. Use with JMeter &amp; Selenium WebDriver &amp; integrate with your existing CI, CD &amp; APM tools.</li>
+<li><a href="http://newrelic.com/" target="_blank" rel="noopener"><strong>NewRelic</strong></a> – software analytics tool suite used by developers, ops, and software companies to understand how your applications are performing in development and production</li>
+<li><a href="https://amplify.nginx.com/" target="_blank" rel="noopener"><strong>NGINX Amplify</strong></a> – Visually identify performance bottlenecks, overloaded servers, or potential DDoS attacks. Improve and optimize NGINX performance with intelligent advice and recommendations. Get alerts when something is wrong with the delivery of your application. Plan capacity and performance for web applications. Keep track of systems running NGINX <a href="https://www.nginx.com/blog/announcing-amplify/" target="_blank" rel="noopener"><sup>1</sup></a></li>
+</ul>
+<h1 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h1><ul>
+<li><a href="http://testutils.org/multi-mechanize/" target="_blank" rel="noopener">Multi-Mechanize | Performance Test Framework</a></li>
+<li><a href="http://www.opensourcetesting.org/performance.php" target="_blank" rel="noopener">Performance test tools list</a></li>
+<li><a href="https://insomnia.rest/" target="_blank" rel="noopener">REST API client</a> - simple, beautiful, and free REST API client (<code>Mac</code>, <code>Windows</code>, and <code>Linux</code>)</li>
+</ul>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="wangye3148" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wy3148" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="https://www.linkedin.com/in/wy3148/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wangye3148@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 YE WANG<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
