@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Use Golang develop web service--gorilla/mux to | Let code talk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is simple notes about using opensource gorilla/mux to implement API service #Define the router 12345678910111213router := mux.NewRouter()//try to get a product by its unique idrouter.HandleFunc(&amp;">
+<meta name="keywords" content="golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Use Golang develop web service--gorilla&#x2F;mux to">
+<meta property="og:url" content="https://wy3148.github.io/2019/10/20/golang-web-server-1/index.html">
+<meta property="og:site_name" content="Let code talk">
+<meta property="og:description" content="This is simple notes about using opensource gorilla/mux to implement API service #Define the router 12345678910111213router := mux.NewRouter()//try to get a product by its unique idrouter.HandleFunc(&amp;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-20T12:53:36.492Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Use Golang develop web service--gorilla&#x2F;mux to">
+<meta name="twitter:description" content="This is simple notes about using opensource gorilla/mux to implement API service #Define the router 12345678910111213router := mux.NewRouter()//try to get a product by its unique idrouter.HandleFunc(&amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="Let code talk" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+</html>
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class="" href="/index.html">Home</a></li>
+        
+          <li><a class="" href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Let code talk</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-golang-web-server-1" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Use Golang develop web service--gorilla/mux to
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2019/10/20/golang-web-server-1/" class="article-date"><time datetime="2019-10-20T10:58:05.000Z" itemprop="datePublished">2019-10-20</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This is simple notes about using opensource gorilla/mux to implement API service</p>
+<p>#Define the router</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">router := mux.NewRouter()</span><br><span class="line"></span><br><span class="line">//try to get a product by its unique id</span><br><span class="line">router.HandleFunc(&quot;/product/&#123;id&#125;&quot;, getProduct).Methods(&quot;GET&quot;)</span><br><span class="line"></span><br><span class="line">//post a new product, POST method is allowed only</span><br><span class="line">router.HandleFunc(&quot;/product&quot;, newProduct).Methods(&quot;POST&quot;)</span><br><span class="line"></span><br><span class="line">//a more general api example</span><br><span class="line">router.HandleFunc(&quot;/api/health&quot;, func(w http.ResponseWriter, r *http.Request) &#123;</span><br><span class="line">	// an example API handler</span><br><span class="line">	json.NewEncoder(w).Encode(map[string]bool&#123;&quot;ok&quot;: true&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getProduct</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//this is about how to get router variables</span></span><br><span class="line">	<span class="comment">//in this example it is 'id' </span></span><br><span class="line">	<span class="comment">//vars['id']</span></span><br><span class="line">	vars := mux.Vars(r)</span><br><span class="line">	w.WriteHeader(http.StatusOK)</span><br><span class="line">	fmt.Println(vars)</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//extra variabes /product/1/filter=last5mins</span></span><br><span class="line">	r.ParseForm()</span><br><span class="line">	filterRule := r.FormValue(<span class="string">"filter"</span>)</span><br><span class="line">	fmt.Println(filterRule)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Product <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name   <span class="keyword">string</span></span><br><span class="line">	Price  <span class="keyword">int</span></span><br><span class="line">	Vendor <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newProduct</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> p Product</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//this is about parse the POST body request into a </span></span><br><span class="line">	<span class="comment">//golang struct </span></span><br><span class="line">	<span class="keyword">if</span> err := json.NewDecoder(r.Body).Decode(&amp;p); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		w.WriteHeader(http.StatusBadRequest)</span><br><span class="line">		w.Write([]<span class="keyword">byte</span>(err.Error()))</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(p.Name, p.Price)</span><br><span class="line">	w.WriteHeader(http.StatusOK)</span><br><span class="line">	w.Write([]<span class="keyword">byte</span>(<span class="string">"ok"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#use a subrouter</p>
+<p>we can define a prefix sub router<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">s := router.PathPrefix(&quot;/clothes&quot;).Subrouter()</span><br><span class="line"></span><br><span class="line">//http: //localhost:8000/clothes/</span><br><span class="line">s.HandleFunc(&quot;/&quot;, listClothes)</span><br><span class="line"></span><br><span class="line">//http://localhost:8000/clothes/1123</span><br><span class="line">s.HandleFunc(&quot;/&#123;id&#125;&quot;, getClothes)</span><br><span class="line"></span><br><span class="line">//http://localhost:8000/clothes/1123/details</span><br><span class="line"></span><br><span class="line">s.HandleFunc(&quot;/&#123;id&#125;/details&quot;, getClothesDetails)</span><br></pre></td></tr></table></figure></p>
+<p>#use middleware </p>
+<p>Here is Autentication middleware, if authorization fails, return error</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// Define our struct</span><br><span class="line">type authenticationMiddleware struct &#123;</span><br><span class="line">	tokenUsers map[string]string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Initialize it somewhere</span><br><span class="line">func (amw *authenticationMiddleware) Populate() &#123;</span><br><span class="line">	amw.tokenUsers[&quot;00000000&quot;] = &quot;user0&quot;</span><br><span class="line">	amw.tokenUsers[&quot;aaaaaaaa&quot;] = &quot;userA&quot;</span><br><span class="line">	amw.tokenUsers[&quot;05f717e5&quot;] = &quot;randomUser&quot;</span><br><span class="line">	amw.tokenUsers[&quot;deadbeef&quot;] = &quot;user0&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Middleware function, which will be called for each request</span><br><span class="line">func (amw *authenticationMiddleware) Middleware(next http.Handler) http.Handler &#123;</span><br><span class="line">    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) &#123;</span><br><span class="line">        token := r.Header.Get(&quot;X-Session-Token&quot;)</span><br><span class="line"></span><br><span class="line">        if user, found := amw.tokenUsers[token]; found &#123;</span><br><span class="line">        	// We found the token in our map</span><br><span class="line">        	log.Printf(&quot;Authenticated user %s\n&quot;, user)</span><br><span class="line">        	// Pass down the request to the next middleware (or final handler)</span><br><span class="line">        	next.ServeHTTP(w, r)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">        	// Write an error and stop the handler chain</span><br><span class="line">        	http.Error(w, &quot;Forbidden&quot;, http.StatusForbidden)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>it support multiple middlewares</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">func loggingMiddleware(next http.Handler) http.Handler &#123;</span><br><span class="line">	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) &#123;</span><br><span class="line">		// Do stuff here</span><br><span class="line">		log.Println(&quot;middleware is called:&quot;, r.RequestURI)</span><br><span class="line">		// Call the next handler, which can be another middleware in the chain, or the final handler.</span><br><span class="line">		next.ServeHTTP(w, r)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	router := mux.NewRouter()</span><br><span class="line">	router.Use(loggingMiddleware)</span><br><span class="line">	amw := authenticationMiddleware&#123;&#125;</span><br><span class="line">	amw.tokenUsers = make(map[string]string)</span><br><span class="line">	amw.Populate()</span><br><span class="line">	router.Use(amw.Middleware)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2019/10/20/golang-web-server-1/" data-id="ck1yzuhpz000fdriixdjoxluc" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2019/02/10/golang-map-internal/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">the map internal of Golang</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Golang/">Golang</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/aws-go-sdk/">aws-go-sdk</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/benchmark-tools/">benchmark tools</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-arrays-sort/">java, arrays.sort</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/lua/">lua</a><span class="sidebar-module-list-count">2</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/Golang/" style="font-size: 10px;">Golang</a> <a href="/tags/aws-go-sdk/" style="font-size: 10px;">aws-go-sdk</a> <a href="/tags/benchmark-tools/" style="font-size: 10px;">benchmark tools</a> <a href="/tags/golang/" style="font-size: 16.67px;">golang</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java-arrays-sort/" style="font-size: 10px;">java, arrays.sort</a> <a href="/tags/lua/" style="font-size: 13.33px;">lua</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/10/20/golang-web-server-1/">Use Golang develop web service--gorilla/mux to</a>
+        </li>
+      
+        <li>
+          <a href="/2019/02/10/golang-map-internal/">the map internal of Golang</a>
+        </li>
+      
+        <li>
+          <a href="/2019/01/18/lua-string-match/">lua-string match the magic characters</a>
+        </li>
+      
+        <li>
+          <a href="/2017/09/13/lua-date-time/">date and time functions in lua</a>
+        </li>
+      
+        <li>
+          <a href="/2017/09/11/awd-s3-go-sdk/">Go sdk for amazon AWs</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2019 YE WANG<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
