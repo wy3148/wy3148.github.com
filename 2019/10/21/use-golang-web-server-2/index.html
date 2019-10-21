@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Category: leetcode binary tree | Ye&#39;s Tech Blog</title>
+  <title>Use Golang to develop web service-2 | Ye&#39;s Tech Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ye&#39;s Tech Blog">
-<meta property="og:url" content="https://wy3148.github.io/categories/leetcode-binary-tree/index.html">
+  <meta name="description" content="opensource software  github.com/spf13/viper Load configuration fileviper is configuration framework and it’s widely used in other opensource golang software such as hugo, kubernets. 1go get &amp;quot;gith">
+<meta name="keywords" content="golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Use Golang to develop web service-2">
+<meta property="og:url" content="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/index.html">
 <meta property="og:site_name" content="Ye&#39;s Tech Blog">
+<meta property="og:description" content="opensource software  github.com/spf13/viper Load configuration fileviper is configuration framework and it’s widely used in other opensource golang software such as hugo, kubernets. 1go get &amp;quot;gith">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-21T13:12:53.076Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ye&#39;s Tech Blog">
+<meta name="twitter:title" content="Use Golang to develop web service-2">
+<meta name="twitter:description" content="opensource software  github.com/spf13/viper Load configuration fileviper is configuration framework and it’s widely used in other opensource golang software such as hugo, kubernets. 1go get &amp;quot;gith">
   
     <link rel="alternate" href="/atom.xml" title="Ye&#39;s Tech Blog" type="application/atom+xml">
   
@@ -72,80 +77,96 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
+          <article id="post-use-golang-web-server-2" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
     
+  
+    <h1 class="article-title" itemprop="name">
+      Use Golang to develop web service-2
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2019/10/21/use-golang-web-server-2/" class="article-date"><time datetime="2019-10-21T12:15:55.000Z" itemprop="datePublished">2019-10-21</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/golang/">golang</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>opensource software </p>
+<p>github.com/spf13/viper</p>
+<h1 id="Load-configuration-file"><a href="#Load-configuration-file" class="headerlink" title="Load configuration file"></a>Load configuration file</h1><p>viper is configuration framework and it’s widely used in other opensource golang software such as hugo, kubernets.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get &quot;github.com/spf13/viper&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="load-json-format"><a href="#load-json-format" class="headerlink" title="load json format"></a>load json format</h2><p>config file is like</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">json config example,</span><br><span class="line">&#123;</span><br><span class="line">  &quot;server&quot;: &quot;127.0.0.1:4000&quot;,</span><br><span class="line">  &quot;appName&quot;: &quot;autotesting&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//with following two lines, viper will load config.json file</span><br><span class="line">//and parse the file</span><br><span class="line">viper.SetConfigFile(&quot;$PATH/go/autoproxy/config.json&quot;)</span><br><span class="line">viper.ReadInConfig()</span><br><span class="line"></span><br><span class="line">server := viper.Get(&quot;server&quot;)</span><br><span class="line">fmt.Println(server)</span><br></pre></td></tr></table></figure>
+<h2 id="nested-config-with-json-format"><a href="#nested-config-with-json-format" class="headerlink" title="nested config with json format"></a>nested config with json format</h2><p>nested json config example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;server&quot;: &quot;127.0.0.1:4000&quot;,</span><br><span class="line">  &quot;appName&quot;: &quot;autotesting&quot;,</span><br><span class="line">  &quot;nestedA&quot;: &#123;</span><br><span class="line">    &quot;addr&quot;: &quot;127.0.0.1:6379&quot;,</span><br><span class="line">    &quot;password&quot;: &quot;test1234&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//code example to load config</span><br><span class="line">nestedA := viper.GetStringMap(&quot;nestedA&quot;)</span><br><span class="line">fmt.Println(nestedA[&quot;addr&quot;].(string))</span><br><span class="line">fmt.Println(nestedA[&quot;password&quot;].(string))</span><br></pre></td></tr></table></figure>
+<h1 id="load-yaml-format"><a href="#load-yaml-format" class="headerlink" title="load yaml format"></a>load yaml format</h1><p>config.yaml config example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">environments:</span><br><span class="line">	dev:</span><br><span class="line">        server: http://dev.bar.com</span><br><span class="line">        name: Developer Setup</span><br><span class="line">    prod:</span><br><span class="line">        url: http://foo.bar.com</span><br><span class="line">        name: My Cool App</span><br></pre></td></tr></table></figure>
+<pre><code>viper.SetConfigFile(&quot;$PATH/config.yaml&quot;)
+viper.ReadInConfig()
+
+//get the environments part
+server := viper.Get(&quot;environments&quot;).(map[string]interface {})
+
+
+//get the dev part
+dev := server[&quot;dev&quot;].(map[string]interface{})
+fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
+</code></pre><p><code>`</code></p>
+
+      
+    </div>
+
     
       
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ck20fxmar001intiiuz4hak47" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
+
+
+    </footer>
+  </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/25/leetcode-binary-tree-max-depth/">leetcode-binary-tree-max-depth</a>
-    </h1>
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
   
+  <li role="presentation">
+    <a href="/2019/10/20/golang-web-server-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Use Golang to develop web service--gorilla/mux to</span>
+    </a>
+  </li>
+  
+  
+</ul>
 
 
-    <div class="article-datetime">
-  <a href="/2017/08/25/leetcode-binary-tree-max-depth/" class="archive-article-date"><time datetime="2017-08-25T12:14:54.000Z" itemprop="datePublished">August 25th</time></a>
-</div>
-
-  </header>
+  
 </article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/23/leetcode-Array-Partition-I/">leetcode-Array-Partition-I</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/2017/08/23/leetcode-Array-Partition-I/" class="archive-article-date"><time datetime="2017-08-23T11:37:10.000Z" itemprop="datePublished">August 23rd</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/23/leetcode-Merge-Two-Binary-Trees/">leetcode-Merge-Two-Binary-Trees</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/2017/08/23/leetcode-Merge-Two-Binary-Trees/" class="archive-article-date"><time datetime="2017-08-23T06:12:18.000Z" itemprop="datePublished">August 23rd</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-  
-    </div></section>
-  
 
 
 

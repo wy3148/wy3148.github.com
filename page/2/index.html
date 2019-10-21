@@ -74,6 +74,65 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-leetcode-binary-tree-max-depth" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/25/leetcode-binary-tree-max-depth/">leetcode-binary-tree-max-depth</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/25/leetcode-binary-tree-max-depth/" class="article-date"><time datetime="2017-08-25T12:14:54.000Z" itemprop="datePublished">2017-08-25</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a binary tree, find its maximum depth.</p>
+<p>The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> left = <span class="keyword">this</span>.maxDepth(root.left);</span><br><span class="line">        <span class="keyword">int</span> right = <span class="keyword">this</span>.maxDepth(root.right);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(left &gt; right)&#123;</span><br><span class="line">            <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> right+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ck20fxmao001cntiij8s5pu3m" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-leetcode-binary-tree-bfs-avarage-value" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -118,7 +177,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ck209z11q0017egiiqxlc1cgw" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ck20fxmak0016ntii74ko8ufj" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -183,7 +242,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ck209z11m0011egiip31won54" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ck20fxmae0013ntiit9d7myjh" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -243,7 +302,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ck209z10p0004egiii7nd57lq" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ck20fxm8n0005ntiiggc0bf1c" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -303,7 +362,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ck209z11l000yegii1kslev6p" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ck20fxmab0010ntiiy2ghtc3k" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -364,7 +423,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ck209z11o0014egii6nnb5xct" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ck20fxman0019ntiid19llb73" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -431,7 +490,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ck209z11e000oegiiaru2qvqt" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ck20fxm9s000pntiisyzuzcyc" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -494,7 +553,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ck209z11j000wegiiz0pq1l3o" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ck20fxm9z000yntiii1ucscu9" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -553,7 +612,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ck209z11h000tegiiwzkdcfdp" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ck20fxm9y000vntiis2af14gt" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -612,75 +671,13 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ck209z11g000qegiigly4pax1" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ck20fxm9u000sntiirvkvdm8z" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2017-08-05-ubuntu-macos" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/2017-08-05-ubuntu-macos/">add the shared folder for virtual ubuntu 16.04 LTS</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/08/05/2017-08-05-ubuntu-macos/" class="article-date"><time datetime="2017-08-05T11:00:00.000Z" itemprop="datePublished">2017-08-05</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="env"><a href="#env" class="headerlink" title="env"></a>env</h2><p>host: mac os<br>virtual box<br>virtual linux: ubuntu 16.04 LTS</p>
-<p>share the folder to the virtual machine, ubuntu 16.04 LTS</p>
-<h2 id="steps"><a href="#steps" class="headerlink" title="steps"></a>steps</h2><p>on virtual box, click ‘settings’-&gt;’shared folder’<br>MUST select ‘/Users/Shared’ as the shared folder on mac host</p>
-<p><img src="/images/vm_shared_folder.png" alt="vm folder screenshot"></p>
-<p>on ubuntu 16.04 LTS, must install the virtual box driver</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install virtualbox-guest-dkms</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo mount -t vboxsf -o uid=$UID,gid=$(id -g) Shared /mnt/</span><br></pre></td></tr></table></figure>
-<p>the shared folder is mounted ‘/mnt’ folder</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ck209z10o0003egiixgegng7f" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
 
     </footer>
   </div>
@@ -711,7 +708,7 @@
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -719,7 +716,7 @@
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Golang/">Golang</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/aws-go-sdk/">aws-go-sdk</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/benchmark-tools/">benchmark tools</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-arrays-sort/">java, arrays.sort</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/lua/">lua</a><span class="sidebar-module-list-count">2</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Golang/">Golang</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/aws-go-sdk/">aws-go-sdk</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/benchmark-tools/">benchmark tools</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/golang/">golang</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-arrays-sort/">java, arrays.sort</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/lua/">lua</a><span class="sidebar-module-list-count">2</span></li></ul>
   </div>
 
 
@@ -736,7 +733,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -745,6 +742,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
+        </li>
       
         <li>
           <a href="/2019/10/20/golang-web-server-1/">Use Golang to develop web service--gorilla/mux to</a>
@@ -760,10 +761,6 @@
       
         <li>
           <a href="/2017/09/13/lua-date-time/">date and time functions in lua</a>
-        </li>
-      
-        <li>
-          <a href="/2017/09/11/awd-s3-go-sdk/">Go sdk for amazon AWs</a>
         </li>
       
     </ul>
