@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Use golang to develop webservice-ORM/Relation database | Ye&#39;s Tech Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ORM opensource in GoORM in golang is acutually implemeted by reflect of go, it’s simiar as json/encoding package,system can get struct name and fields by reflect.Details can be found in https://golang">
+<meta name="keywords" content="golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Use golang to develop webservice-ORM&#x2F;Relation database">
+<meta property="og:url" content="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/index.html">
+<meta property="og:site_name" content="Ye&#39;s Tech Blog">
+<meta property="og:description" content="ORM opensource in GoORM in golang is acutually implemeted by reflect of go, it’s simiar as json/encoding package,system can get struct name and fields by reflect.Details can be found in https://golang">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-23T04:17:12.739Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Use golang to develop webservice-ORM&#x2F;Relation database">
+<meta name="twitter:description" content="ORM opensource in GoORM in golang is acutually implemeted by reflect of go, it’s simiar as json/encoding package,system can get struct name and fields by reflect.Details can be found in https://golang">
+  
+    <link rel="alternate" href="/atom.xml" title="Ye&#39;s Tech Blog" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+</html>
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class="" href="/index.html">Home</a></li>
+        
+          <li><a class="" href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Ye&#39;s Tech Blog</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-golang-webservice-data-orm" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Use golang to develop webservice-ORM/Relation database
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2019/10/22/golang-webservice-data-orm/" class="article-date"><time datetime="2019-10-22T03:23:52.000Z" itemprop="datePublished">2019-10-22</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ORM-opensource-in-Go"><a href="#ORM-opensource-in-Go" class="headerlink" title="ORM opensource in Go"></a>ORM opensource in Go</h1><p>ORM in golang is acutually implemeted by reflect of go, it’s simiar as json/encoding package,<br>system can get struct name and fields by reflect.<br>Details can be found in <a href="https://golang.org/pkg/reflect/" target="_blank" rel="noopener">https://golang.org/pkg/reflect/</a></p>
+<h2 id="beego-orm"><a href="#beego-orm" class="headerlink" title="beego orm"></a>beego orm</h2><p><a href="https://beego.me/docs/mvc/model/orm.md" target="_blank" rel="noopener">https://beego.me/docs/mvc/model/orm.md</a></p>
+<p>beego is complete web framework, beego/orm is part of it, but it can also be used sperately.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"github.com/astaxie/beego/orm"</span></span><br><span class="line">    _ <span class="string">"github.com/go-sql-driver/mysql"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//This is the Customer table in database</span></span><br><span class="line">type Customer <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	Id int64</span><br><span class="line">	FirstName <span class="built_in">string</span> `orm:<span class="string">"column(FirstName)"</span>` <span class="comment">// orm is actually reflection in golang</span></span><br><span class="line">	<span class="comment">//if the field name is different, can also define it.</span></span><br><span class="line">	 </span><br><span class="line">	LastName <span class="built_in">string</span> `orm:<span class="string">"column(Lastname)"</span>`</span><br><span class="line">	Email <span class="built_in">string</span> `orm:<span class="string">"column(Email)"</span>`</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    orm.RegisterDriver(<span class="string">"mysql"</span>, orm.DRMySQL)</span><br><span class="line">	orm.RegisterDataBase(<span class="string">"default"</span>, <span class="string">"mysql"</span>, <span class="string">"root:pass1234@/hearing?charset=utf8"</span>)</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//need to register the Customer table firstly</span></span><br><span class="line">	orm.RegisterModel(<span class="keyword">new</span>(Customer))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    o := orm.NewOrm()</span><br><span class="line">	o.Using(<span class="string">"default"</span>) <span class="comment">// Using default, you can use other database</span></span><br><span class="line">	</span><br><span class="line">	customer := &amp;Customer&#123;</span><br><span class="line">		FirstName:<span class="string">"Ye"</span>,</span><br><span class="line">		LastName: <span class="string">"W"</span>,</span><br><span class="line">		Email:<span class="string">"test1234@gmail.com"</span>,</span><br><span class="line">	&#125;</span><br><span class="line">    fmt.Println(o.Insert(customer))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="goorp"><a href="#goorp" class="headerlink" title="goorp"></a>goorp</h2><p><a href="https://github.com/go-gorp/gorp" target="_blank" rel="noopener">https://github.com/go-gorp/gorp</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"database/sql"</span></span><br><span class="line"></span><br><span class="line">	_ <span class="string">"github.com/go-sql-driver/mysql"</span></span><br><span class="line">	<span class="string">"gopkg.in/gorp.v1"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Table struct</span></span><br><span class="line">type Post <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	Id   <span class="keyword">int</span></span><br><span class="line">	Name <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func initDb() *gorp.DbMap &#123;</span><br><span class="line">	<span class="comment">// connect to db using standard Go database/sql API</span></span><br><span class="line">	<span class="comment">// use whatever database/sql driver you wish</span></span><br><span class="line">	db, err := sql.Open(<span class="string">"mysql"</span>, <span class="string">"root:pass1234@/hearing"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		panic(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// construct a gorp DbMap</span></span><br><span class="line">	<span class="comment">//define the mysqlDialect</span></span><br><span class="line">	dbmap := &amp;gorp.DbMap&#123;Db: db, Dialect: gorp.MySQLDialect&#123;</span><br><span class="line">		Engine:   <span class="string">"InnoDB"</span>,</span><br><span class="line">		Encoding: <span class="string">"utf8"</span>,</span><br><span class="line">	&#125;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// add a table, setting the table name to 'posts' and</span></span><br><span class="line">	<span class="comment">// specifying that the Id property is an auto incrementing PK</span></span><br><span class="line">	dbmap.AddTableWithName(Post&#123;&#125;, <span class="string">"posts"</span>).SetKeys(<span class="literal">true</span>, <span class="string">"Id"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// create the table. in a production system you'd generally</span></span><br><span class="line">	<span class="comment">// use a migration tool, or create the tables via scripts</span></span><br><span class="line">	err = dbmap.CreateTablesIfNotExists()</span><br><span class="line">	<span class="keyword">return</span> dbmap</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	dbmap := initDb()</span><br><span class="line">	p := &amp;Post&#123;</span><br><span class="line">		Name: <span class="string">"first post"</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//add a new entry</span></span><br><span class="line">	dbmap.Insert(p)</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//get the entry by its unique id</span></span><br><span class="line">	data, _ := dbmap.Get(Post&#123;&#125;, <span class="number">1</span>)</span><br><span class="line">	d := data.(*Post)</span><br><span class="line">	fmt.Println(<span class="string">"got entry from db:"</span>, d.Name)</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="goorm"><a href="#goorm" class="headerlink" title="goorm"></a>goorm</h1><p><a href="https://github.com/jinzhu/gorm" target="_blank" rel="noopener">https://github.com/jinzhu/gorm</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	_ <span class="string">"github.com/go-sql-driver/mysql"</span></span><br><span class="line">	<span class="string">"github.com/jinzhu/gorm"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">type Product <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	ID    uint `gorm:<span class="string">"primary_key"</span>`</span><br><span class="line">	Code  <span class="built_in">string</span></span><br><span class="line">	Price uint</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	db, err := gorm.Open(<span class="string">"mysql"</span>, <span class="string">"root:pass1234@/hearing"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		panic(<span class="string">"failed to connect database"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	defer db.Close()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Migrate the schema</span></span><br><span class="line">	db.AutoMigrate(&amp;Product&#123;&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Create</span></span><br><span class="line">	db.Create(&amp;Product&#123;Code: <span class="string">"L1212"</span>, Price: <span class="number">1000</span>&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Read</span></span><br><span class="line">	var product Product</span><br><span class="line">	db.First(&amp;product, <span class="number">1</span>)                   <span class="comment">// find product with id 1</span></span><br><span class="line">	db.First(&amp;product, <span class="string">"code = ?"</span>, <span class="string">"L1212"</span>) <span class="comment">// find product with code l1212</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Update - update product's price to 2000</span></span><br><span class="line">	db.Model(&amp;product).Update(<span class="string">"Price"</span>, <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Delete - delete product</span></span><br><span class="line">	db.Delete(&amp;product)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/" data-id="ck22rnz1w000lueiirwgz6ldp" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2019/10/21/use-golang-web-server-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Use Golang to develop web service-2</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>welcome to my tech blog, https://www.linkedin.com/in/wy3148/</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Golang/">Golang</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/aws-go-sdk/">aws-go-sdk</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/benchmark-tools/">benchmark tools</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/golang/">golang</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-arrays-sort/">java, arrays.sort</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/lua/">lua</a><span class="sidebar-module-list-count">2</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/Golang/" style="font-size: 10px;">Golang</a> <a href="/tags/aws-go-sdk/" style="font-size: 10px;">aws-go-sdk</a> <a href="/tags/benchmark-tools/" style="font-size: 10px;">benchmark tools</a> <a href="/tags/golang/" style="font-size: 16.67px;">golang</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java-arrays-sort/" style="font-size: 10px;">java, arrays.sort</a> <a href="/tags/lua/" style="font-size: 13.33px;">lua</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
+        </li>
+      
+        <li>
+          <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
+        </li>
+      
+        <li>
+          <a href="/2019/10/20/golang-web-server-1/">Use Golang to develop web service--gorilla/mux</a>
+        </li>
+      
+        <li>
+          <a href="/2019/02/10/golang-map-internal/">the map internal of Golang</a>
+        </li>
+      
+        <li>
+          <a href="/2019/01/18/lua-string-match/">lua-string match the magic characters</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2019 YE WANG<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

@@ -74,6 +74,66 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-golang-webservice-data-orm" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2019/10/22/golang-webservice-data-orm/" class="article-date"><time datetime="2019-10-22T03:23:52.000Z" itemprop="datePublished">2019-10-22</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ORM-opensource-in-Go"><a href="#ORM-opensource-in-Go" class="headerlink" title="ORM opensource in Go"></a>ORM opensource in Go</h1><p>ORM in golang is acutually implemeted by reflect of go, it’s simiar as json/encoding package,<br>system can get struct name and fields by reflect.<br>Details can be found in <a href="https://golang.org/pkg/reflect/" target="_blank" rel="noopener">https://golang.org/pkg/reflect/</a></p>
+<h2 id="beego-orm"><a href="#beego-orm" class="headerlink" title="beego orm"></a>beego orm</h2><p><a href="https://beego.me/docs/mvc/model/orm.md" target="_blank" rel="noopener">https://beego.me/docs/mvc/model/orm.md</a></p>
+<p>beego is complete web framework, beego/orm is part of it, but it can also be used sperately.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"github.com/astaxie/beego/orm"</span></span><br><span class="line">    _ <span class="string">"github.com/go-sql-driver/mysql"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//This is the Customer table in database</span></span><br><span class="line">type Customer <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	Id int64</span><br><span class="line">	FirstName <span class="built_in">string</span> `orm:<span class="string">"column(FirstName)"</span>` <span class="comment">// orm is actually reflection in golang</span></span><br><span class="line">	<span class="comment">//if the field name is different, can also define it.</span></span><br><span class="line">	 </span><br><span class="line">	LastName <span class="built_in">string</span> `orm:<span class="string">"column(Lastname)"</span>`</span><br><span class="line">	Email <span class="built_in">string</span> `orm:<span class="string">"column(Email)"</span>`</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    orm.RegisterDriver(<span class="string">"mysql"</span>, orm.DRMySQL)</span><br><span class="line">	orm.RegisterDataBase(<span class="string">"default"</span>, <span class="string">"mysql"</span>, <span class="string">"root:pass1234@/hearing?charset=utf8"</span>)</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//need to register the Customer table firstly</span></span><br><span class="line">	orm.RegisterModel(<span class="keyword">new</span>(Customer))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    o := orm.NewOrm()</span><br><span class="line">	o.Using(<span class="string">"default"</span>) <span class="comment">// Using default, you can use other database</span></span><br><span class="line">	</span><br><span class="line">	customer := &amp;Customer&#123;</span><br><span class="line">		FirstName:<span class="string">"Ye"</span>,</span><br><span class="line">		LastName: <span class="string">"W"</span>,</span><br><span class="line">		Email:<span class="string">"test1234@gmail.com"</span>,</span><br><span class="line">	&#125;</span><br><span class="line">    fmt.Println(o.Insert(customer))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="goorp"><a href="#goorp" class="headerlink" title="goorp"></a>goorp</h2><p><a href="https://github.com/go-gorp/gorp" target="_blank" rel="noopener">https://github.com/go-gorp/gorp</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"database/sql"</span></span><br><span class="line"></span><br><span class="line">	_ <span class="string">"github.com/go-sql-driver/mysql"</span></span><br><span class="line">	<span class="string">"gopkg.in/gorp.v1"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Table struct</span></span><br><span class="line">type Post <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	Id   <span class="keyword">int</span></span><br><span class="line">	Name <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func initDb() *gorp.DbMap &#123;</span><br><span class="line">	<span class="comment">// connect to db using standard Go database/sql API</span></span><br><span class="line">	<span class="comment">// use whatever database/sql driver you wish</span></span><br><span class="line">	db, err := sql.Open(<span class="string">"mysql"</span>, <span class="string">"root:pass1234@/hearing"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		panic(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// construct a gorp DbMap</span></span><br><span class="line">	<span class="comment">//define the mysqlDialect</span></span><br><span class="line">	dbmap := &amp;gorp.DbMap&#123;Db: db, Dialect: gorp.MySQLDialect&#123;</span><br><span class="line">		Engine:   <span class="string">"InnoDB"</span>,</span><br><span class="line">		Encoding: <span class="string">"utf8"</span>,</span><br><span class="line">	&#125;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// add a table, setting the table name to 'posts' and</span></span><br><span class="line">	<span class="comment">// specifying that the Id property is an auto incrementing PK</span></span><br><span class="line">	dbmap.AddTableWithName(Post&#123;&#125;, <span class="string">"posts"</span>).SetKeys(<span class="literal">true</span>, <span class="string">"Id"</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// create the table. in a production system you'd generally</span></span><br><span class="line">	<span class="comment">// use a migration tool, or create the tables via scripts</span></span><br><span class="line">	err = dbmap.CreateTablesIfNotExists()</span><br><span class="line">	<span class="keyword">return</span> dbmap</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	dbmap := initDb()</span><br><span class="line">	p := &amp;Post&#123;</span><br><span class="line">		Name: <span class="string">"first post"</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//add a new entry</span></span><br><span class="line">	dbmap.Insert(p)</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//get the entry by its unique id</span></span><br><span class="line">	data, _ := dbmap.Get(Post&#123;&#125;, <span class="number">1</span>)</span><br><span class="line">	d := data.(*Post)</span><br><span class="line">	fmt.Println(<span class="string">"got entry from db:"</span>, d.Name)</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="goorm"><a href="#goorm" class="headerlink" title="goorm"></a>goorm</h1><p><a href="https://github.com/jinzhu/gorm" target="_blank" rel="noopener">https://github.com/jinzhu/gorm</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	_ <span class="string">"github.com/go-sql-driver/mysql"</span></span><br><span class="line">	<span class="string">"github.com/jinzhu/gorm"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">type Product <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	ID    uint `gorm:<span class="string">"primary_key"</span>`</span><br><span class="line">	Code  <span class="built_in">string</span></span><br><span class="line">	Price uint</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	db, err := gorm.Open(<span class="string">"mysql"</span>, <span class="string">"root:pass1234@/hearing"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		panic(<span class="string">"failed to connect database"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	defer db.Close()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Migrate the schema</span></span><br><span class="line">	db.AutoMigrate(&amp;Product&#123;&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Create</span></span><br><span class="line">	db.Create(&amp;Product&#123;Code: <span class="string">"L1212"</span>, Price: <span class="number">1000</span>&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Read</span></span><br><span class="line">	var product Product</span><br><span class="line">	db.First(&amp;product, <span class="number">1</span>)                   <span class="comment">// find product with id 1</span></span><br><span class="line">	db.First(&amp;product, <span class="string">"code = ?"</span>, <span class="string">"L1212"</span>) <span class="comment">// find product with code l1212</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Update - update product's price to 2000</span></span><br><span class="line">	db.Model(&amp;product).Update(<span class="string">"Price"</span>, <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Delete - delete product</span></span><br><span class="line">	db.Delete(&amp;product)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/" data-id="ck22rnz1w000lueiirwgz6ldp" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-use-golang-web-server-2" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -137,7 +197,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ck20h9uqq001lx1ii3eun0kcu" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ck22rnz320026ueiid7o70pkg" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -204,7 +264,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/20/golang-web-server-1/" data-id="ck20h9upp000jx1iisr7jkcu0" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/20/golang-web-server-1/" data-id="ck22rnz20000oueiikhwojg97" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -267,7 +327,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/02/10/golang-map-internal/" data-id="ck20h9upb000ax1iirf9ubxao" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/02/10/golang-map-internal/" data-id="ck22rnz1k000cueii5fgj963o" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -322,7 +382,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ck20h9uqp001jx1iiuc5cauvn" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ck22rnz2m001sueii22v02o0y" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -388,7 +448,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ck20h9uqn001gx1iikrikufh4" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ck22rnz2l001oueiicnsfu9h0" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -451,7 +511,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ck20h9up50006x1ii08but0lt" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ck22rnz1d0007ueiiwdgtuiq2" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -559,7 +619,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ck20h9upt000lx1iihu6xch9m" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ck22rnz24000sueiiv3rrs6cc" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -619,7 +679,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ck20h9up90009x1ii4hdkyi0k" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ck22rnz1a0004ueiixsnoutua" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -683,68 +743,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ck20h9upd000dx1iiikc8jxp9" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-golang-sync-Map" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/01/golang-sync-Map/">try sync.Map in golang 1.9</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/09/01/golang-sync-Map/" class="article-date"><time datetime="2017-09-01T00:08:51.000Z" itemprop="datePublished">2017-09-01</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/golang/">golang</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Golang 1.9 new version support safe Map now, details can be found,</p>
-<p><a href="https://golang.org/pkg/sync/#Map.Load" target="_blank" rel="noopener">https://golang.org/pkg/sync/#Map.Load</a></p>
-<p>Here is sample code, test filename is ‘sync_map.go’</p>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"sync"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">writeProc</span><span class="params">(m *sync.Map, c <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">        i := <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> &#123;</span><br><span class="line">            v, ok := m.Load(<span class="string">"ok1"</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ok &#123;</span><br><span class="line">                fmt.Println(<span class="string">"get the ok 1"</span>)</span><br><span class="line">                fmt.Println(v)</span><br><span class="line">                c &lt;- <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fmt.Printf(<span class="string">"does not get the key element, sleep for one second, counting: %d\n"</span>, i)</span><br><span class="line">            i++</span><br><span class="line">            time.Sleep(<span class="number">1000</span> * time.Millisecond)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	m := <span class="built_in">new</span>(sync.Map)</span><br><span class="line"></span><br><span class="line">	c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"></span><br><span class="line">	writeProc(m, c)</span><br><span class="line"></span><br><span class="line">	time.Sleep(<span class="number">10</span> * time.Second)</span><br><span class="line">	m.Store(<span class="string">"ok1"</span>, <span class="string">"goood!!!"</span>)</span><br><span class="line">	&lt;-c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>output example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">go run sync_map.go </span><br><span class="line">does not get the key element, sleep for one second, counting: 0</span><br><span class="line">does not get the key element, sleep for one second, counting: 1</span><br><span class="line">does not get the key element, sleep for one second, counting: 2</span><br><span class="line">does not get the key element, sleep for one second, counting: 3</span><br><span class="line">does not get the key element, sleep for one second, counting: 4</span><br><span class="line">does not get the key element, sleep for one second, counting: 5</span><br><span class="line">does not get the key element, sleep for one second, counting: 6</span><br><span class="line">does not get the key element, sleep for one second, counting: 7</span><br><span class="line">does not get the key element, sleep for one second, counting: 8</span><br><span class="line">does not get the key element, sleep for one second, counting: 9</span><br><span class="line">get the ok 1</span><br><span class="line">goood!!!</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ck20h9upi000gx1iid46rrqqo" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ck22rnz1o000fueiisdnwptx7" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -773,7 +772,7 @@ And keepalive (which is default) can be disabled using:
           
   <div class="sidebar-module sidebar-module-inset">
   <h4>About</h4>
-  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+  <p>welcome to my tech blog, https://www.linkedin.com/in/wy3148/</p>
 
 </div>
 
@@ -789,7 +788,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Golang/">Golang</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/aws-go-sdk/">aws-go-sdk</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/benchmark-tools/">benchmark tools</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/golang/">golang</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-arrays-sort/">java, arrays.sort</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/lua/">lua</a><span class="sidebar-module-list-count">2</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Golang/">Golang</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/aws-go-sdk/">aws-go-sdk</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/benchmark-tools/">benchmark tools</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/golang/">golang</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java/">java</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/java-arrays-sort/">java, arrays.sort</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/lua/">lua</a><span class="sidebar-module-list-count">2</span></li></ul>
   </div>
 
 
@@ -806,7 +805,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -815,6 +814,10 @@ And keepalive (which is default) can be disabled using:
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
+        </li>
       
         <li>
           <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
@@ -830,10 +833,6 @@ And keepalive (which is default) can be disabled using:
       
         <li>
           <a href="/2019/01/18/lua-string-match/">lua-string match the magic characters</a>
-        </li>
-      
-        <li>
-          <a href="/2017/09/13/lua-date-time/">date and time functions in lua</a>
         </li>
       
     </ul>
