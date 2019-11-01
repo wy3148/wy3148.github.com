@@ -74,6 +74,80 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="golang-kafka-support" class="article article-type-golang-kafka" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/01/support/">Use kafka in Golang</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2019/11/01/support/" class="article-date"><time datetime="2019-10-31T23:48:20.000Z" itemprop="datePublished">2019-11-01</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/golang/">golang</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="kafka-version"><a href="#kafka-version" class="headerlink" title="kafka version"></a>kafka version</h1><p>kafka_2.11-2.3.1</p>
+<p>Follow the guide to start kafka server, on this version 2.3.1,<br>kafa is using zookeeper service to maintain meta-data information.</p>
+<h2 id="start-zookeeper-and-kafka-service-in-local"><a href="#start-zookeeper-and-kafka-service-in-local" class="headerlink" title="start zookeeper and kafka service in local"></a>start zookeeper and kafka service in local</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">bin/zookeeper-server-start.sh config/zookeeper.properties</span><br><span class="line"></span><br><span class="line">bin/kafka-server-start.sh config/server.properties</span><br><span class="line"></span><br><span class="line">create a topic:s</span><br><span class="line">bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line"></span><br><span class="line">list topics</span><br><span class="line">bin/kafka-topics.sh --list --bootstrap-server localhost:9092</span><br><span class="line"></span><br><span class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br></pre></td></tr></table></figure>
+<p>we can produce messages</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br></pre></td></tr></table></figure>
+<h2 id="consumer-groups"><a href="#consumer-groups" class="headerlink" title="consumer groups"></a>consumer groups</h2><p>each group can consume same messages at the same time, this could be widely used in a lot of applications,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sales group for example,</span><br><span class="line"></span><br><span class="line">./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --group &quot;sales-group1&quot; --from-beginning</span><br><span class="line"></span><br><span class="line">a finance group for example,</span><br><span class="line"></span><br><span class="line">/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --group &quot;finance-group1&quot;</span><br><span class="line"></span><br><span class="line">a tech support group for example,</span><br><span class="line">./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --group &quot;techsupport-group1&quot; --from-beginning</span><br></pre></td></tr></table></figure>
+<p>if we want to reset offset of one consumer group, messages can be re-consumed again, for example,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --topic test --group &quot;sales-group1&quot; --reset-offsets --to-earliest --execute</span><br></pre></td></tr></table></figure>
+<h2 id="About-further-understanding-of-kafka-topic-and-partitions"><a href="#About-further-understanding-of-kafka-topic-and-partitions" class="headerlink" title="About further understanding of kafka topic and partitions"></a>About further understanding of kafka topic and partitions</h2><p>references<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dzone.com/articles/apache-kafka-topic-architecture-amp-partitions</span><br></pre></td></tr></table></figure></p>
+<h1 id="Kafka-in-Golang"><a href="#Kafka-in-Golang" class="headerlink" title="Kafka in Golang"></a>Kafka in Golang</h1><p>opensources</p>
+<pre><code>&quot;github.com/Shopify/sarama&quot;
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	cfg := sarama.NewConfig()</span><br><span class="line"></span><br><span class="line">switch os.Getenv(&quot;KAKFA_APIVERSION&quot;) &#123;</span><br><span class="line">case &quot;V0_11_0_0&quot;:</span><br><span class="line">	cfg.Version = sarama.V0_11_0_0</span><br><span class="line">default:</span><br><span class="line">	cfg.Version = sarama.V1_0_0_0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c, err := sarama.NewClient([]string&#123;d.addr&#125;, cfg)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	d.producerWithPartition.Input() &lt;- &amp;sarama.ProducerMessage&#123;</span><br><span class="line">	Topic:     l.Topic,</span><br><span class="line">	Key:       sarama.StringEncoder(l.Key),</span><br><span class="line">	Partition: int32(getPartition(l.Key, num)),</span><br><span class="line">	Value:     sarama.StringEncoder(l.Data),</span><br><span class="line">	Headers:   header,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>the other good opensource is<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;github.com/segmentio/kafka-go&quot;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2019/11/01/support/" data-id="ck2fk2usg001h81ii2azt016w" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-golang-webservice-data-orm" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -118,7 +192,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/" data-id="ck22rzjxp000l73iisdrki8op" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/" data-id="ck2fk2us5000r81iivs7vuzzc" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -197,7 +271,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ck22rzjy7001p73iif4wbrfeq" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ck2fk2uso001t81ii0vw07qvc" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -264,7 +338,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/20/golang-web-server-1/" data-id="ck22rzjxk000g73iidsa5hi9x" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/20/golang-web-server-1/" data-id="ck2fk2urz000j81ii988p2roz" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -327,7 +401,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/02/10/golang-map-internal/" data-id="ck22rzjxg000a73iitw600drp" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/02/10/golang-map-internal/" data-id="ck2fk2urr000a81ii0f0bd4si" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -382,7 +456,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ck22rzjy4001j73ii38jdeygz" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ck2fk2usn001q81ii1t85kmej" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -448,7 +522,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ck22rzjy5001l73iief80t05w" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ck2fk2usi001m81ii7dfer8tu" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -511,7 +585,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ck22rzjxd000673iiym4uf1j9" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ck2fk2urp000681ii7chqxu78" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -619,7 +693,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ck22rzjxq000p73iiimbl1t0j" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ck2fk2us3000p81ii3rtu2tvh" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -679,71 +753,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ck22rzjxf000973iiekclq7iv" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-golang-return-channel-in-func" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/04/golang-return-channel-in-func/">golang-return channel vs retufn &lt;- channel</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/09/04/golang-return-channel-in-func/" class="article-date"><time datetime="2017-09-03T23:43:02.000Z" itemprop="datePublished">2017-09-04</time></a>
-</div>
-
-    
-    
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://stackoverflow.com/questions/31920353/whats-the-difference-between-chan-and-chan-as-a-function-return-type" target="_blank" rel="noopener">https://stackoverflow.com/questions/31920353/whats-the-difference-between-chan-and-chan-as-a-function-return-type</a></p>
-<p>in golang, some functions can return ‘channel’, and some functions return channel with prefix:’ &lt;- ‘</p>
-<p>Golang newbie here.</p>
-<p>Is there a functional difference between</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function">func <span class="title">randomNumberGenerator</span><span class="params">()</span> &lt;-chan <span class="keyword">int</span> </span>&#123;</span><br><span class="line">and</span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">randomNumberGenerator</span><span class="params">()</span> chan <span class="keyword">int</span> </span>&#123;</span><br><span class="line">I<span class="string">'ve tried using both and they seem to work fine for me.</span></span><br></pre></td></tr></table></figure>
-<p>I’ve seen the former used by Rob Pike (one of Go creators) in his Go Concurrency Patterns talk at Google IO 2012. I’ve also seen it used in Go’s official website. Why add 2 extra characters (“&lt;-“) when you can omit it? I’ve tried looking for the difference on the web, but couldn’t find it.</p>
-<p>Both will work indeed. But one will be more constraining. The form with the arrow pointing away from the chan keyword means that the returned channel will only be able to be pulled from by client code. No pushing allowed : the pushing will be done by the random number generator function. Conversely, there’s a third form with the arrow pointing towards chan, that makes said channel write-only to clients.</p>
-<p>chan   // read-write<br>&lt;-chan // read only<br>chan&lt;- // write only<br>These added constraints can improve the expression of intent and tighten the type system : attempts to force stuff into a read-only channel will leave you with a compilation error, and so will attempts to read from a write-only channel. These constraints can be expressed in the return type, but they can also be part of the parameter signature. Like in :</p>
-<p>func log(&lt;-chan string) { …<br>There you can know, just by the signature, that the log function will consume data from the channel, and not send any to it.</p>
-<p>code sample</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">shopping</span><span class="params">(num <span class="keyword">int</span>)</span> &lt;-chan <span class="keyword">int</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	res := make(chan <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function">go <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="function">defer <span class="title">close</span><span class="params">(res)</span></span></span><br><span class="line"><span class="function">		time.<span class="title">Sleep</span><span class="params">(<span class="number">5</span> * time.Second)</span></span></span><br><span class="line"><span class="function">		res &lt;- 100</span></span><br><span class="line"><span class="function">	&#125;<span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	return res</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">func <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	v := shopping(<span class="number">5</span>)</span><br><span class="line">	v &lt;- <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>It will generate the compile error<br>invalid operation: v &lt;- 100 (send to receive-only type &lt;-chan int)</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ck22rzjxh000d73ii5ypf9a2k" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ck2fk2urq000981ii04q0r1us" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -780,7 +790,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -788,7 +798,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -797,6 +807,10 @@ And keepalive (which is default) can be disabled using:
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/11/01/support/">Use kafka in Golang</a>
+        </li>
       
         <li>
           <a href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
@@ -812,10 +826,6 @@ And keepalive (which is default) can be disabled using:
       
         <li>
           <a href="/2019/02/10/golang-map-internal/">the map internal of Golang</a>
-        </li>
-      
-        <li>
-          <a href="/2019/01/18/lua-string-match/">lua-string match the magic characters</a>
         </li>
       
     </ul>
