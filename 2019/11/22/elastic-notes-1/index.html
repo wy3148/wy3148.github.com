@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>elasticsearch notes-1 | Ye&#39;s Tech Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="setup the elasticseach testing envon macos 12345wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.2-darwin-x86_64.tar.gzwget https://artifacts.elastic.co/downloads/elasticsea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch notes-1">
+<meta property="og:url" content="https://wy3148.github.io/2019/11/22/elastic-notes-1/index.html">
+<meta property="og:site_name" content="Ye&#39;s Tech Blog">
+<meta property="og:description" content="setup the elasticseach testing envon macos 12345wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.2-darwin-x86_64.tar.gzwget https://artifacts.elastic.co/downloads/elasticsea">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-22T03:28:42.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch notes-1">
+<meta name="twitter:description" content="setup the elasticseach testing envon macos 12345wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.2-darwin-x86_64.tar.gzwget https://artifacts.elastic.co/downloads/elasticsea">
+  
+    <link rel="alternate" href="/atom.xml" title="Ye&#39;s Tech Blog" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+</html>
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class="" href="/index.html">Home</a></li>
+        
+          <li><a class="" href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Ye&#39;s Tech Blog</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-elastic-notes-1" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      elasticsearch notes-1
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2019/11/22/elastic-notes-1/" class="article-date"><time datetime="2019-11-22T02:22:15.000Z" itemprop="datePublished">2019-11-22</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="setup-the-elasticseach-testing-env"><a href="#setup-the-elasticseach-testing-env" class="headerlink" title="setup the elasticseach testing env"></a>setup the elasticseach testing env</h1><p>on macos</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.2-darwin-x86_64.tar.gz</span><br><span class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.4.2-darwin-x86_64.tar.gz.sha512</span><br><span class="line">shasum -a 512 -c elasticsearch-7.4.2-darwin-x86_64.tar.gz.sha512 </span><br><span class="line">tar -xzf elasticsearch-7.4.2-darwin-x86_64.tar.gz</span><br><span class="line">cd elasticsearch-7.4.2/</span><br></pre></td></tr></table></figure>
+<h1 id="run-the-service"><a href="#run-the-service" class="headerlink" title="run the service"></a>run the service</h1><p>./bin/elasticsearch</p>
+<p>after the running, the API service is available<br>at <a href="http://localhost:9200/" target="_blank" rel="noopener">http://localhost:9200/</a></p>
+<h1 id="install-kibana"><a href="#install-kibana" class="headerlink" title="install kibana"></a>install kibana</h1><p>kibana is tar.gz file, which we can download directly,<br><a href="https://artifacts.elastic.co/downloads/kibana/kibana-7.4.2-darwin-x86_64.tar.gz" target="_blank" rel="noopener">https://artifacts.elastic.co/downloads/kibana/kibana-7.4.2-darwin-x86_64.tar.gz</a></p>
+<h1 id="run-kibana"><a href="#run-kibana" class="headerlink" title="run kibana"></a>run kibana</h1><p>./bin/kibana<br>after running,the web UI can be accessed via<br><a href="http://localhost:5601" target="_blank" rel="noopener">http://localhost:5601</a></p>
+<p>so now we have basic testing services elasticsearch and kibana</p>
+<h1 id="using-golang-client-sdk-to-write-test-data"><a href="#using-golang-client-sdk-to-write-test-data" class="headerlink" title="using golang client sdk to write test data"></a>using golang client sdk to write test data</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line"><span class="comment">//http://localhost:9200/test/_doc/1</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">	<span class="string">"context"</span></span><br><span class="line">	<span class="string">"encoding/json"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"strconv"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">	<span class="string">"sync"</span></span><br><span class="line">	elasticsearch <span class="string">"github.com/elastic/go-elasticsearch/v7"</span></span><br><span class="line">	<span class="string">"github.com/elastic/go-elasticsearch/v7/esapi"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function">func <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">log</span>.SetFlags(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">	var (</span><br><span class="line">		r  <span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;</span><br><span class="line">		wg sync.WaitGroup</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Initialize a client with the default settings.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// An `ELASTICSEARCH_URL` environment variable will be used when exported.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	es, err := elasticsearch.NewDefaultClient()</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		<span class="built_in">log</span>.Fatalf(<span class="string">"Error creating the client: %s"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 1. Get cluster info</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	res, err := es.Info()</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		<span class="built_in">log</span>.Fatalf(<span class="string">"Error getting response: %s"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Check response status</span></span><br><span class="line">	<span class="keyword">if</span> res.IsError() &#123;</span><br><span class="line">		<span class="built_in">log</span>.Fatalf(<span class="string">"Error: %s"</span>, res.String())</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Deserialize the response into a map.</span></span><br><span class="line">	<span class="keyword">if</span> err := json.NewDecoder(res.Body).Decode(&amp;r); err != nil &#123;</span><br><span class="line">		<span class="built_in">log</span>.Fatalf(<span class="string">"Error parsing the response body: %s"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Print client and server version numbers.</span></span><br><span class="line">	<span class="built_in">log</span>.Printf(<span class="string">"Client: %s"</span>, elasticsearch.Version)</span><br><span class="line">	<span class="built_in">log</span>.Printf(<span class="string">"Server: %s"</span>, r[<span class="string">"version"</span>].(<span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;)[<span class="string">"number"</span>])</span><br><span class="line">	<span class="built_in">log</span>.Println(strings.Repeat(<span class="string">"~"</span>, <span class="number">37</span>))</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2. Index documents concurrently</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="keyword">for</span> i, title := range []<span class="built_in">string</span>&#123;<span class="string">"Test One"</span>, <span class="string">"Test Two"</span>&#125; &#123;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">		go func(i <span class="keyword">int</span>, title <span class="built_in">string</span>) &#123;</span><br><span class="line">			defer wg.Done()</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Build the request body.</span></span><br><span class="line">			var b strings.Builder</span><br><span class="line">			b.WriteString(`&#123;<span class="string">"title"</span> : <span class="string">"`)</span></span><br><span class="line"><span class="string">			b.WriteString(title)</span></span><br><span class="line"><span class="string">			b.WriteString(`"</span>&#125;`)</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Set up the request object.</span></span><br><span class="line">			req := esapi.IndexRequest&#123;</span><br><span class="line">				Index:      <span class="string">"test"</span>,</span><br><span class="line">				DocumentID: strconv.Itoa(i + <span class="number">1</span>),</span><br><span class="line">				Body:       strings.NewReader(b.String()),</span><br><span class="line">				Refresh:    <span class="string">"true"</span>,</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Perform the request with the client.</span></span><br><span class="line">			res, err := req.Do(context.Background(), es)</span><br><span class="line">			<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">				<span class="built_in">log</span>.Fatalf(<span class="string">"Error getting response: %s"</span>, err)</span><br><span class="line">			&#125;</span><br><span class="line">			defer res.Body.Close()</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> res.IsError() &#123;</span><br><span class="line">				<span class="built_in">log</span>.Printf(<span class="string">"[%s] Error indexing document ID=%d"</span>, res.Status(), i+<span class="number">1</span>)</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">// Deserialize the response into a map.</span></span><br><span class="line">				var r <span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;</span><br><span class="line">				<span class="keyword">if</span> err := json.NewDecoder(res.Body).Decode(&amp;r); err != nil &#123;</span><br><span class="line">					<span class="built_in">log</span>.Printf(<span class="string">"Error parsing the response body: %s"</span>, err)</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="comment">// Print the response status and indexed document version.</span></span><br><span class="line">					<span class="built_in">log</span>.Printf(<span class="string">"[%s] %s; version=%d"</span>, res.Status(), r[<span class="string">"result"</span>], <span class="keyword">int</span>(r[<span class="string">"_version"</span>].(float64)))</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;(i, title)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	<span class="built_in">log</span>.Println(strings.Repeat(<span class="string">"-"</span>, <span class="number">37</span>))</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 3. Search for the indexed documents</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// Build the request body.</span></span><br><span class="line">	var buf bytes.Buffer</span><br><span class="line">	query := <span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;&#123;</span><br><span class="line">		<span class="string">"query"</span>: <span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;&#123;</span><br><span class="line">			<span class="string">"match"</span>: <span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;&#123;</span><br><span class="line">				<span class="string">"title"</span>: <span class="string">"test"</span>,</span><br><span class="line">			&#125;,</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> err := json.NewEncoder(&amp;buf).Encode(query); err != nil &#123;</span><br><span class="line">		<span class="built_in">log</span>.Fatalf(<span class="string">"Error encoding query: %s"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Perform the search request.</span></span><br><span class="line">	res, err = es.Search(</span><br><span class="line">		es.Search.WithContext(context.Background()),</span><br><span class="line">		es.Search.WithIndex(<span class="string">"test"</span>),</span><br><span class="line">		es.Search.WithBody(&amp;buf),</span><br><span class="line">		es.Search.WithTrackTotalHits(<span class="literal">true</span>),</span><br><span class="line">		es.Search.WithPretty(),</span><br><span class="line">	)</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		<span class="built_in">log</span>.Fatalf(<span class="string">"Error getting response: %s"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	defer res.Body.Close()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> res.IsError() &#123;</span><br><span class="line">		var e <span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;</span><br><span class="line">		<span class="keyword">if</span> err := json.NewDecoder(res.Body).Decode(&amp;e); err != nil &#123;</span><br><span class="line">			<span class="built_in">log</span>.Fatalf(<span class="string">"Error parsing the response body: %s"</span>, err)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// Print the response status and error information.</span></span><br><span class="line">			<span class="built_in">log</span>.Fatalf(<span class="string">"[%s] %s: %s"</span>,</span><br><span class="line">				res.Status(),</span><br><span class="line">				e[<span class="string">"error"</span>].(<span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;)[<span class="string">"type"</span>],</span><br><span class="line">				e[<span class="string">"error"</span>].(<span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;)[<span class="string">"reason"</span>],</span><br><span class="line">			)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err := json.NewDecoder(res.Body).Decode(&amp;r); err != nil &#123;</span><br><span class="line">		<span class="built_in">log</span>.Fatalf(<span class="string">"Error parsing the response body: %s"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Print the response status, number of results, and request duration.</span></span><br><span class="line">	<span class="built_in">log</span>.Printf(</span><br><span class="line">		<span class="string">"[%s] %d hits; took: %dms"</span>,</span><br><span class="line">		res.Status(),</span><br><span class="line">		<span class="keyword">int</span>(r[<span class="string">"hits"</span>].(<span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;)[<span class="string">"total"</span>].(<span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;)[<span class="string">"value"</span>].(float64)),</span><br><span class="line">		<span class="keyword">int</span>(r[<span class="string">"took"</span>].(float64)),</span><br><span class="line">	)</span><br><span class="line">	<span class="comment">// Print the ID and document source for each hit.</span></span><br><span class="line">	<span class="keyword">for</span> _, hit := range r[<span class="string">"hits"</span>].(<span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;)[<span class="string">"hits"</span>].([]interface&#123;&#125;) &#123;</span><br><span class="line">		<span class="built_in">log</span>.Printf(<span class="string">" * ID=%s, %s"</span>, hit.(<span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;)[<span class="string">"_id"</span>], hit.(<span class="built_in">map</span>[<span class="built_in">string</span>]interface&#123;&#125;)[<span class="string">"_source"</span>])</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">log</span>.Println(strings.Repeat(<span class="string">"="</span>, <span class="number">37</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>after writing, we can access data from elastic server directly</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:9200/test/_doc/1</span><br><span class="line">http://localhost:9200/test/_doc/2</span><br></pre></td></tr></table></figure>
+<h1 id="manage-the-index-on-kibana"><a href="#manage-the-index-on-kibana" class="headerlink" title="manage the index on kibana"></a>manage the index on kibana</h1><p>to make kibana work with our elasticsearch servce, we need to create index pattern,so kibana can search on index.<br>go to kibana home page-&gt;management-&gt;index patterns,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:5601/app/kibana#/management/elasticsearch/index_management/indices?_g=()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2019/11/22/elastic-notes-1/" data-id="ck39lbxh20004lriiug03ojd3" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2019/11/01/support/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Use kafka in Golang</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>welcome to my tech blog</p> <p>https://www.linkedin.com/in/wy3148/</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2019/11/22/elastic-notes-1/">elasticsearch notes-1</a>
+        </li>
+      
+        <li>
+          <a href="/2019/11/01/support/">Use kafka in Golang</a>
+        </li>
+      
+        <li>
+          <a href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
+        </li>
+      
+        <li>
+          <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
+        </li>
+      
+        <li>
+          <a href="/2019/10/20/golang-web-server-1/">Use Golang to develop web service--gorilla/mux</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2019 YE WANG<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
