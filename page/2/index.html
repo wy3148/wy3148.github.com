@@ -74,6 +74,114 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-http-performance-testing" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/05/http-performance-testing/">benchmark tools for http/https/restAPI testing</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/09/05/http-performance-testing/" class="article-date"><time datetime="2017-09-05T00:21:10.000Z" itemprop="datePublished">2017-09-05</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#Benchmark tools</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/ApacheBench" target="_blank" rel="noopener"><strong>ab</strong></a> – slow and single threaded, written in <code>C</code></li>
+<li><a href="https://github.com/apigee/apib" target="_blank" rel="noopener"><strong>apib</strong></a> – most of the features of ApacheBench (<code>ab</code>), also designed as a <a href="https://github.com/apigee/apib#design" target="_blank" rel="noopener">more modern replacement</a>, written in <code>C</code></li>
+<li><a href="https://github.com/h2non/baloo" target="_blank" rel="noopener"><strong>baloo</strong></a> – Expressive end-to-end HTTP API testing made easy, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/codesenberg/bombardier" target="_blank" rel="noopener"><strong>bombardier</strong></a> – Fast crossplatform HTTP benchmarking tool, written in Go (<code>golang</code>)</li>
+<li><a href="http://curl-loader.sourceforge.net/" target="_blank" rel="noopener"><strong>curl-loader</strong></a> – performance loading of various application services and traffic generation, written in <code>C</code></li>
+<li><a href="https://github.com/hagen1778/fasthttploader" target="_blank" rel="noopener"><strong>fasthttploader</strong></a> – benchmark (kinda ab) with autoadjustment and charts based on fasthttp library, write in Go (<code>golang</code>)</li>
+<li><a href="http://gatling.io" target="_blank" rel="noopener"><strong>gatling</strong></a> – High performance load testing framework based on Scala, Akka and Netty, write in <code>Scala</code></li>
+<li><a href="https://github.com/gophergala2016/goad" target="_blank" rel="noopener"><strong>goad</strong></a> – Goad is an AWS Lambda powered, highly distributed, load testing tool, write in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/cmpxchg16/gobench" target="_blank" rel="noopener"><strong>gobench</strong></a> – HTTP/HTTPS load testing and benchmarking tool, write in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/parkghost/gohttpbench" target="_blank" rel="noopener"><strong>gohttpbench</strong></a> – <code>ab</code>-like benchmark tool run on multi-core cpu, write in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/rakyll/hey" target="_blank" rel="noopener"><strong>hey</strong></a> – HTTP(S) load generator, ApacheBench (<code>ab</code>) replacement, formerly known as <a href="https://github.com/rakyll/boom" target="_blank" rel="noopener"><strong>rakyll/boom</strong></a>, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/arut/htstress" target="_blank" rel="noopener"><strong>htstress</strong></a> – multithreading high-load bechmarking services (&gt;5K rps), written in <code>C</code>/<code>Linux</code></li>
+<li><a href="https://github.com/httperf/httperf" target="_blank" rel="noopener"><strong>httperf</strong></a> – difficult configuration, slow and single threaded, written in <code>C</code></li>
+<li><a href="https://github.com/opsengine/inundator" target="_blank" rel="noopener"><strong>inundator</strong></a> – A simple and high-throughput HTTP flood program, written in <code>C</code>/<code>Linux</code></li>
+<li><a href="http://jmeter.apache.org/" target="_blank" rel="noopener"><strong>jmeter</strong></a> – Apache  JMeter™, pure application designed to load test performance both on static and dynamic resources, written in <code>Java</code></li>
+<li><a href="https://github.com/byorty/mgun" target="_blank" rel="noopener"><strong>mgun</strong></a> – A modern tool for load testing HTTP servers, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/X4/pounce" target="_blank" rel="noopener"><strong>pounce</strong></a> – evented, but results fluctuate, it’s sometimes faster than <code>htstress</code>, written in <code>C</code></li>
+<li><a href="http://www.joedog.org/siege-home/" target="_blank" rel="noopener"><strong>siege</strong></a> – slow and single threaded, written in <code>C</code></li>
+<li><a href="https://github.com/ikruglov/slapper" target="_blank" rel="noopener"><strong>slapper</strong></a> – Simple load testing tool with real-time updated histogram of request timings, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/BuoyantIO/slow_cooker" target="_blank" rel="noopener"><strong>slow_cooker</strong></a> – A load tester focused on lifecycle issues and long-running tests, service with a predictable load and concurrency level for a long period of time, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/lubia/sniper" target="_blank" rel="noopener"><strong>sniper</strong></a> – powerful &amp; high-performance http load tester, written in Go (<code>golang</code>)</li>
+<li><a href="http://tsung.erlang-projects.org/" target="_blank" rel="noopener"><strong>tsung</strong></a> – Simulate stress users in order to test the scalability and performance of IP based client/server applications <code>HTTP</code>, <code>WebDAV</code>, <code>SOAP</code>, <code>PostgreSQL</code>, <code>MySQL</code>, <code>LDAP</code> and <code>Jabber</code>/<code>XMPP</code> servers, written in <code>Erlang</code></li>
+<li><a href="https://github.com/tsenart/vegeta" target="_blank" rel="noopener"><strong>vegeta</strong></a> – HTTP load testing tool and library, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/lighttpd/weighttp" target="_blank" rel="noopener"><strong>weighttp</strong></a> – multithreaded, but slower than htstress without keepalive, written in <code>C</code></li>
+<li><a href="https://github.com/wg/wrk" target="_blank" rel="noopener"><strong>wrk</strong></a> – multithreaded<del>, but doesn’t offer concurrent connections and a keepalive switch</del>, written in <code>C</code>/<code>Lua</code></li>
+<li><p><a href="https://github.com/giltene/wrk2" target="_blank" rel="noopener"><strong>wrk2</strong></a> – constant throughput, correct latency recording variant of wrk, written in <code>C</code>/<code>Lua</code></p>
+<pre><code>Concurrent connections are enabled with:
+  -c, --connections &lt;N&gt;  Connections to keep open
+And keepalive (which is default) can be disabled using:
+  -H &quot;Connection: close&quot;
+</code></pre></li>
+<li><a href="https://github.com/yandex/yandex-tank" target="_blank" rel="noopener"><strong>yandex-tank</strong></a> – Load and performance benchmark tool, written in <code>Python</code>/<code>C|C++|Asm</code> (<a href="https://github.com/yandex-load/phantom" target="_blank" rel="noopener">phantom</a>)</li>
+</ul>
+<h1 id="Toolkit-for-testing-debugging-HTTP-S-and-restAPI-RESTful"><a href="#Toolkit-for-testing-debugging-HTTP-S-and-restAPI-RESTful" class="headerlink" title="Toolkit for testing/debugging HTTP(S) and restAPI (RESTful)"></a>Toolkit for testing/debugging HTTP(S) and restAPI (RESTful)</h1><ul>
+<li><a href="https://github.com/astaxie/bat" target="_blank" rel="noopener"><strong>bat</strong></a> – Go implement CLI, cURL-like tool for humans, written in Go (<code>golang</code>)</li>
+<li><a href="https://github.com/curl/curl" target="_blank" rel="noopener"><strong>curl</strong></a> – Powerful features command-line tool for transferring data specified with URL syntax, written in <code>C</code><ul>
+<li><a href="https://curlbuilder.com/" target="_blank" rel="noopener">Online curl command line builde</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/NickCarneiro/curlconverter" target="_blank" rel="noopener"><strong>curlconverter</strong></a> – convert curl commands to python, javascript, php</li>
+<li><a href="https://github.com/jkbrzt/httpie" target="_blank" rel="noopener"><strong>httpie</strong></a> – client, user-friendly curl replacement with intuitive UI, JSON support, syntax highlighting, wget-like downloads, extensions, written in <code>Python</code></li>
+<li><a href="https://github.com/stedolan/jq" target="_blank" rel="noopener"><strong>jq</strong></a> – is a lightweight and flexible command-line JSON processor, written in <code>C</code></li>
+</ul>
+<h1 id="SaaS-PaaS"><a href="#SaaS-PaaS" class="headerlink" title="SaaS/PaaS"></a>SaaS/PaaS</h1><ul>
+<li><a href="https://www.blitz.io/" target="_blank" rel="noopener"><strong>blitz.io</strong></a> – an easy solution to load and performance testing from the Cloud. Test scaliability on websites, mobile, web apps and REST APIs.</li>
+<li><a href="https://blazemeter.com/" target="_blank" rel="noopener"><strong>BlazeMeter</strong></a> – offers a cross-enterprise test automation framework for the entire technical team (developers, devops, ops and QA) throughout the product development lifecycle. Run continuous or ‘on demand’ testing for APIs, mobile apps and websites. Run from the cloud, on-premise or as a hybrid solution. Use with JMeter &amp; Selenium WebDriver &amp; integrate with your existing CI, CD &amp; APM tools.</li>
+<li><a href="http://newrelic.com/" target="_blank" rel="noopener"><strong>NewRelic</strong></a> – software analytics tool suite used by developers, ops, and software companies to understand how your applications are performing in development and production</li>
+<li><a href="https://amplify.nginx.com/" target="_blank" rel="noopener"><strong>NGINX Amplify</strong></a> – Visually identify performance bottlenecks, overloaded servers, or potential DDoS attacks. Improve and optimize NGINX performance with intelligent advice and recommendations. Get alerts when something is wrong with the delivery of your application. Plan capacity and performance for web applications. Keep track of systems running NGINX <a href="https://www.nginx.com/blog/announcing-amplify/" target="_blank" rel="noopener"><sup>1</sup></a></li>
+</ul>
+<h1 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h1><ul>
+<li><a href="http://testutils.org/multi-mechanize/" target="_blank" rel="noopener">Multi-Mechanize | Performance Test Framework</a></li>
+<li><a href="http://www.opensourcetesting.org/performance.php" target="_blank" rel="noopener">Performance test tools list</a></li>
+<li><a href="https://insomnia.rest/" target="_blank" rel="noopener">REST API client</a> - simple, beautiful, and free REST API client (<code>Mac</code>, <code>Windows</code>, and <code>Linux</code>)</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ck98edeiy000p28ii371yqikw" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/benchmark-tools/">benchmark tools</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-golang-context" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -118,7 +226,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ck39lbxhd000ilriila4w5jbd" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ck98edeip000a28iis5cd3iw6" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -182,7 +290,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ck39lbxhb000dlriiikm1nnk7" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ck98edeis000g28iisde8b3w1" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -243,7 +351,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ck39lbxha000clriilotevehi" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ck98edeiw000j28ii9qp4hpui" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -302,7 +410,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ck39lbxhv001hlrii7ikm9pxg" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ck98edejf001k28iig87joug7" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -362,7 +470,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ck39lbxhu001elrii99gr3rf3" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ck98edeje001i28iicay0i5g6" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -427,7 +535,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ck39lbxhs0018lrii7j725lno" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ck98edejc001c28iim8625wlq" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -487,7 +595,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ck39lbxh60007lriiiu9ti8x7" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ck98edeim000628iiwffiwa3i" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -547,7 +655,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ck39lbxhq0015lriilme2dphm" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ck98edej4001328iiu5mdy13t" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -608,74 +716,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ck39lbxht001blriibbbptj7y" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-leetcode-Array-Partition-I" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/23/leetcode-Array-Partition-I/">leetcode-Array-Partition-I</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/08/23/leetcode-Array-Partition-I/" class="article-date"><time datetime="2017-08-23T11:37:10.000Z" itemprop="datePublished">2017-08-23</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), …, (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.</p>
-<p>Example 1:<br>Input: [1,4,3,2]</p>
-<p>Output: 4<br>Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).<br>Note:<br>n is a positive integer, which is in the range of [1, 10000].<br>All the integers in the array will be in the range of [-10000, 10000].</p>
-<p>Answer:<br>we should try to get the maxium element in each pair, so firstly we use quick sort to<br>sort all integer elements, then caculate the sum pair by pair</p>
-<p>Point: This topic is mainly about the quick sort algorithm.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pivot = arr[high]; </span><br><span class="line">        <span class="keyword">int</span> i = (low-<span class="number">1</span>); <span class="comment">// index of smaller element</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=low; j&lt;high; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// If current element is smaller than or</span></span><br><span class="line">            <span class="comment">// equal to pivot</span></span><br><span class="line">            <span class="keyword">if</span> (arr[j] &lt;= pivot)</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line"> </span><br><span class="line">                <span class="comment">// swap arr[i] and arr[j]</span></span><br><span class="line">                <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">                arr[i] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// swap arr[i+1] and arr[high] (or pivot)</span></span><br><span class="line">        <span class="keyword">int</span> temp = arr[i+<span class="number">1</span>];</span><br><span class="line">        arr[i+<span class="number">1</span>] = arr[high];</span><br><span class="line">        arr[high] = temp;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* The main function that implements QuickSort()</span></span><br><span class="line"><span class="comment">      arr[] --&gt; Array to be sorted,</span></span><br><span class="line"><span class="comment">      low  --&gt; Starting index,</span></span><br><span class="line"><span class="comment">      high  --&gt; Ending index */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (low &lt; high)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/* pi is partitioning index, arr[pi] is </span></span><br><span class="line"><span class="comment">              now at right place */</span></span><br><span class="line">            <span class="keyword">int</span> pi = partition(arr, low, high);</span><br><span class="line"> </span><br><span class="line">            <span class="comment">// Recursively sort elements before</span></span><br><span class="line">            <span class="comment">// partition and after partition</span></span><br><span class="line">            sort(arr, low, pi-<span class="number">1</span>);</span><br><span class="line">            sort(arr, pi+<span class="number">1</span>, high);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">arrayPairSum</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">        sort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(i &lt; nums.length)&#123;</span><br><span class="line">            sum = sum + nums[i];</span><br><span class="line">            i = i + <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Actually, java Array class naturally has ‘sort’ method</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">static void	sort(int[] a, int fromIndex, int toIndex)</span><br><span class="line">Sorts the specified range of the array into ascending order.</span><br></pre></td></tr></table></figure>
-<p>so someone also post following code</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">arrayPairSum</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i += <span class="number">2</span>) &#123;</span><br><span class="line">            result += nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>which is much more simple.</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ck39lbxhi000nlriicl93qm9n" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ck98edejd001e28iievyosny1" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -720,7 +761,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -729,6 +770,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
+        </li>
       
         <li>
           <a href="/2019/11/22/elastic-notes-1/">elasticsearch notes-1</a>
@@ -746,10 +791,6 @@
           <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
         </li>
       
-        <li>
-          <a href="/2019/10/20/golang-web-server-1/">Use Golang to develop web service--gorilla/mux</a>
-        </li>
-      
     </ul>
   </div>
 
@@ -761,7 +802,7 @@
   <footer class="blog-footer">
   <div class="container">
     <div id="footer-info" class="inner">
-      &copy; 2019 YE WANG<br>
+      &copy; 2020 YE WANG<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

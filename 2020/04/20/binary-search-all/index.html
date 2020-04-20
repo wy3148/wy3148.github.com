@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>binary search algorithm--different ways in coding | Ye&#39;s Tech Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is a general summary about binary search implemented in different ways.We try to find the difference among these different ways. ##Find the exact target find a target in a sorted array 1234567891">
+<meta name="keywords" content="algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="binary search algorithm--different ways in coding">
+<meta property="og:url" content="https://wy3148.github.io/2020/04/20/binary-search-all/index.html">
+<meta property="og:site_name" content="Ye&#39;s Tech Blog">
+<meta property="og:description" content="This is a general summary about binary search implemented in different ways.We try to find the difference among these different ways. ##Find the exact target find a target in a sorted array 1234567891">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-04-20T11:29:26.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="binary search algorithm--different ways in coding">
+<meta name="twitter:description" content="This is a general summary about binary search implemented in different ways.We try to find the difference among these different ways. ##Find the exact target find a target in a sorted array 1234567891">
+  
+    <link rel="alternate" href="/atom.xml" title="Ye&#39;s Tech Blog" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+</html>
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class="" href="/index.html">Home</a></li>
+        
+          <li><a class="" href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">Ye&#39;s Tech Blog</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-binary-search-all" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      binary search algorithm--different ways in coding
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2020/04/20/binary-search-all/" class="article-date"><time datetime="2020-04-20T10:40:33.000Z" itemprop="datePublished">2020-04-20</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This is a general summary about binary search implemented in different ways.<br>We try to find the difference among these different ways.</p>
+<p>##Find the exact target</p>
+<p>find a target in a sorted array</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> r = nums1.size() <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = ( l + r) /<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums1[mid] == v) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums1[mid] &gt; v)&#123;</span><br><span class="line">            r = mid <span class="number">-1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//in the coding, while condition is l &lt;= r</span></span><br></pre></td></tr></table></figure>
+<p>suppose we have an array that is </p>
+<p>[a, b, c]</p>
+<p>l = 0, r = 2 at the beginning,<br>mid =1;  if target is b, we have found the target;<br>if target is a, r = mid - 1 = 0;  so now l = r ; we can find that target;<br>if target is b, l = mid + 1=  1; and now l = r; we can find that target.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">searchII</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> r = nums1.size() <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(l + <span class="number">1</span> &lt; r)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = ( l + r) /<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums1[mid] == v) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums1[mid] &gt; v)&#123;</span><br><span class="line">            r = mid;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            l = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums1[l] == v || nums1[r] == v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>in this way, before the next time of loop, l or r is always set to ‘mid’ value;<br>only the while condition finally cause two adjancent elements are left in array;<br>that’s why we finally need to verify<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> nums1[l] == v || nums1[r] == v;</span><br></pre></td></tr></table></figure></p>
+<p>the second way to implement binary search is safer way which avoid the possibile overflow or panic<br>in array iteration.</p>
+<p>##find the first position where element is bigger or equal to  target</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstGreatOrEqual</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">		<span class="comment">//n + 1 个数</span></span><br><span class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> high = n;</span><br><span class="line">		<span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">			mid = low + ((high-low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span>(key &lt;= a[mid]) &#123;</span><br><span class="line">				high = mid - <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				low = mid + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> low &lt;= n ? low : <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>##find the first element where element is bigger than target</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> high = n;</span><br><span class="line">		<span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">			mid = low + ((high-low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span>(key &lt; a[mid]) &#123;</span><br><span class="line">				high = mid - <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				low = mid + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> low &lt;= n ? low : <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+<p>the difference part is<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (key &lt;= a[mid]) <span class="function"><span class="keyword">and</span> <span class="title">if</span> <span class="params">(key &lt; a[mid])</span></span></span><br></pre></td></tr></table></figure></p>
+<p>so we try to find the location what ‘low’ position element is bigger than targt value</p>
+<p>There are more questions such as<br>find the maximum position of the element which is equal to target<br>or<br>find the minimum position of the element which is eqaul to target</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2020/04/20/binary-search-all/" data-id="ck98edeil000528iijzag16v7" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2019/11/22/elastic-notes-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">elasticsearch notes-1</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>welcome to my tech blog</p> <p>https://www.linkedin.com/in/wy3148/</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
+        </li>
+      
+        <li>
+          <a href="/2019/11/22/elastic-notes-1/">elasticsearch notes-1</a>
+        </li>
+      
+        <li>
+          <a href="/2019/11/01/support/">Use kafka in Golang</a>
+        </li>
+      
+        <li>
+          <a href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
+        </li>
+      
+        <li>
+          <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2020 YE WANG<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

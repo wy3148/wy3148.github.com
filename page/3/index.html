@@ -74,6 +74,73 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-leetcode-Array-Partition-I" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/23/leetcode-Array-Partition-I/">leetcode-Array-Partition-I</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/23/leetcode-Array-Partition-I/" class="article-date"><time datetime="2017-08-23T11:37:10.000Z" itemprop="datePublished">2017-08-23</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), …, (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.</p>
+<p>Example 1:<br>Input: [1,4,3,2]</p>
+<p>Output: 4<br>Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).<br>Note:<br>n is a positive integer, which is in the range of [1, 10000].<br>All the integers in the array will be in the range of [-10000, 10000].</p>
+<p>Answer:<br>we should try to get the maxium element in each pair, so firstly we use quick sort to<br>sort all integer elements, then caculate the sum pair by pair</p>
+<p>Point: This topic is mainly about the quick sort algorithm.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pivot = arr[high]; </span><br><span class="line">        <span class="keyword">int</span> i = (low-<span class="number">1</span>); <span class="comment">// index of smaller element</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=low; j&lt;high; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// If current element is smaller than or</span></span><br><span class="line">            <span class="comment">// equal to pivot</span></span><br><span class="line">            <span class="keyword">if</span> (arr[j] &lt;= pivot)</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line"> </span><br><span class="line">                <span class="comment">// swap arr[i] and arr[j]</span></span><br><span class="line">                <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">                arr[i] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// swap arr[i+1] and arr[high] (or pivot)</span></span><br><span class="line">        <span class="keyword">int</span> temp = arr[i+<span class="number">1</span>];</span><br><span class="line">        arr[i+<span class="number">1</span>] = arr[high];</span><br><span class="line">        arr[high] = temp;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* The main function that implements QuickSort()</span></span><br><span class="line"><span class="comment">      arr[] --&gt; Array to be sorted,</span></span><br><span class="line"><span class="comment">      low  --&gt; Starting index,</span></span><br><span class="line"><span class="comment">      high  --&gt; Ending index */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (low &lt; high)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">/* pi is partitioning index, arr[pi] is </span></span><br><span class="line"><span class="comment">              now at right place */</span></span><br><span class="line">            <span class="keyword">int</span> pi = partition(arr, low, high);</span><br><span class="line"> </span><br><span class="line">            <span class="comment">// Recursively sort elements before</span></span><br><span class="line">            <span class="comment">// partition and after partition</span></span><br><span class="line">            sort(arr, low, pi-<span class="number">1</span>);</span><br><span class="line">            sort(arr, pi+<span class="number">1</span>, high);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">arrayPairSum</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">        sort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(i &lt; nums.length)&#123;</span><br><span class="line">            sum = sum + nums[i];</span><br><span class="line">            i = i + <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Actually, java Array class naturally has ‘sort’ method</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">static void	sort(int[] a, int fromIndex, int toIndex)</span><br><span class="line">Sorts the specified range of the array into ascending order.</span><br></pre></td></tr></table></figure>
+<p>so someone also post following code</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">arrayPairSum</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i += <span class="number">2</span>) &#123;</span><br><span class="line">            result += nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>which is much more simple.</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ck98edej1000u28iinv73tj37" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-leetcode-Merge-Two-Binary-Trees" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -121,7 +188,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ck39lbxhp0011lriif46pj47m" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ck98edej6001728iid9px6qec" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -180,7 +247,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ck39lbxhn000xlriiv0gytyfr" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ck98edejb001828iiqu695x93" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -239,7 +306,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ck39lbxhl000slriinwxtsvx7" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ck98edej3001028ii7upiz90e" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -303,7 +370,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ck39lbxh10003lriixfd72moc" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ck98edeig000228iieh1mxl1y" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -371,7 +438,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/02/2017-08-02-zookeeper-play1/" data-id="ck39lbxgx0001lriiub9am1cc" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/02/2017-08-02-zookeeper-play1/" data-id="ck98edeij000428ii28mbm0fn" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -426,7 +493,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/07/31/2017-07-31-welcome-to-jekyll/" data-id="ck39lbxgt0000lriiikgi7j0d" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/07/31/2017-07-31-welcome-to-jekyll/" data-id="ck98edei9000028iihmuwexzz" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -469,7 +536,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -478,6 +545,10 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
+        </li>
       
         <li>
           <a href="/2019/11/22/elastic-notes-1/">elasticsearch notes-1</a>
@@ -495,10 +566,6 @@ https://www.tutorialspoint.com/zookeeper/index.htm
           <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
         </li>
       
-        <li>
-          <a href="/2019/10/20/golang-web-server-1/">Use Golang to develop web service--gorilla/mux</a>
-        </li>
-      
     </ul>
   </div>
 
@@ -510,7 +577,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   <footer class="blog-footer">
   <div class="container">
     <div id="footer-info" class="inner">
-      &copy; 2019 YE WANG<br>
+      &copy; 2020 YE WANG<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
