@@ -74,6 +74,122 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-java-begin-maven" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/27/java-begin-maven/">java use maven</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2020/07/27/java-begin-maven/" class="article-date"><time datetime="2020-07-27T11:55:53.000Z" itemprop="datePublished">2020-07-27</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>maven</p>
+<h1 id="maven-local-cache"><a href="#maven-local-cache" class="headerlink" title="maven local cache"></a>maven local cache</h1><p>local cache</p>
+<p>$Default_user_dir/.m2/repository</p>
+<p>reference:<br><a href="https://maven.apache.org/index.html" target="_blank" rel="noopener">https://maven.apache.org/index.html</a></p>
+<h1 id="maven-pom-xml"><a href="#maven-pom-xml" class="headerlink" title="maven pom.xml"></a>maven pom.xml</h1><p>maven.compiler plugin is used to specifi the jave SDK version,<br>in my local mac, after mvn init , the default version which is 1.7<br>which might be too old.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;properties&gt;</span><br><span class="line">  &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">  &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">  &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+<p>User should validate the local java sdk, run ‘java -version’, for example,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">openjdk version <span class="string">"14.0.2"</span> <span class="number">2020</span>-<span class="number">07</span>-<span class="number">14</span></span><br><span class="line"><span class="function">OpenJDK Runtime <span class="title">Environment</span> <span class="params">(build <span class="number">14.0</span><span class="number">.2</span>+<span class="number">12</span><span class="number">-46</span>)</span></span></span><br><span class="line"><span class="function">OpenJDK 64-Bit Server <span class="title">VM</span> <span class="params">(build <span class="number">14.0</span><span class="number">.2</span>+<span class="number">12</span><span class="number">-46</span>, mixed mode, sharing)</span></span></span><br></pre></td></tr></table></figure>
+<p>#java sdk version is important</p>
+<p>for example, java sdk 1.7 only has constructor in priority queue</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PriorityQueue(<span class="keyword">int</span> initialCapacity, Comparator&lt;? <span class="keyword">super</span> E&gt; comparator)</span><br></pre></td></tr></table></figure>
+<p>while java sdk1.8 has a new contrustor</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PriorityQueue(Comparator&lt;? <span class="keyword">super</span> E&gt; comparator)</span><br></pre></td></tr></table></figure>
+<p>java SDK will use a default size when create a new PriorityQueue</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2020/07/27/java-begin-maven/" data-id="ckd4j2td3000z8jiitbwqyiws" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-tea-party-md" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/19/tea-party-md/">tea_party.md</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2020/05/19/tea-party-md/" class="article-date"><time datetime="2020-05-19T11:18:33.000Z" itemprop="datePublished">2020-05-19</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2020/05/19/tea-party-md/" data-id="ckd4j2tdi00208jiiarf0ygpf" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-binary-search-all" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -127,7 +243,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2020/04/20/binary-search-all/" data-id="ck98edeil000528iijzag16v7" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2020/04/20/binary-search-all/" data-id="ckd4j2tci000a8jii39wodhvk" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -192,7 +308,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/11/22/elastic-notes-1/" data-id="ck98edeix000l28ii4fde9g41" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/11/22/elastic-notes-1/" data-id="ckd4j2tcj000b8jiixz1jacmn" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -266,7 +382,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/11/01/support/" data-id="ck98edejj001t28iit1lhw2v6" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/11/01/support/" data-id="ckd4j2tdk00268jii7wdjrhhw" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -324,7 +440,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/" data-id="ck98edej2000x28iiiaix20f7" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/" data-id="ckd4j2td0000t8jiib1mohayo" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -403,7 +519,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ck98edeji001q28ii1l9ek5cz" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ckd4j2tdj00238jiis0v0o7z1" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -470,7 +586,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/20/golang-web-server-1/" data-id="ck98edej0000r28iiezoepvuk" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/20/golang-web-server-1/" data-id="ckd4j2tcv000q8jiivrkwq20j" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -533,7 +649,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/02/10/golang-map-internal/" data-id="ck98edeir000d28iisc237hfo" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/02/10/golang-map-internal/" data-id="ckd4j2tcp000h8jii28rn5cov" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -588,141 +704,12 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ck98edejk001w28iit4i7v8ep" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ckd4j2tdh001w8jiis0gpws3b" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-lua-date-time" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/13/lua-date-time/">date and time functions in lua</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/09/13/lua-date-time/" class="article-date"><time datetime="2017-09-13T06:55:22.000Z" itemprop="datePublished">2017-09-13</time></a>
-</div>
-
-    
-    
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>os.date ([format [, time]])</p>
-<p>Returns a string or a table containing date and time, formatted according to the given string format.</p>
-<p>If the time argument is present, this is the time to be formatted (see the os.time function for a description of this value). Otherwise, date formats the current time.</p>
-<p>If format starts with ‘!’, then the date is formatted in Coordinated Universal Time. After this optional character, if format is the string “*t”, then date returns a table with the following fields: year (four digits), month (1–12), day (1–31), hour (0–23), min (0–59), sec (0–61), wday (weekday, Sunday is 1), yday (day of the year), and isdst (daylight saving flag, a boolean).</p>
-<p>If format is not “*t”, then date returns the date as a string, formatted according to the same rules as the C function strftime.</p>
-<p>When called without arguments, date returns a reasonable date and time representation that depends on the host system and on the current locale (that is, os.date() is equivalent to os.date(“%c”)).</p>
-<p>os.time ([table])</p>
-<p>Returns the current time when called without arguments, or a time representing the date and time specified by the given table. This table must have fields year, month, and day, and may have fields hour, min, sec, and isdst (for a description of these fields, see the os.date function).</p>
-<p>The returned value is a number, whose meaning depends on your system. In POSIX, Windows, and some other systems, this number counts the number of seconds since some given start time (the “epoch”). In other systems, the meaning is not specified, and the number returned by time can be used only as an argument to date and difftime.</p>
-<p>code examples</p>
-<p>get the current time as a table variable<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">os</span>.<span class="built_in">date</span>(<span class="string">"*t"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>get the time based on the time offset, if we know the time offset, we can get time with a different timezone with current system setting</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- offset is -10 hours, which is 36000 in seconds</span></span><br><span class="line"><span class="keyword">local</span> t = <span class="built_in">os</span>.<span class="built_in">date</span>(<span class="string">"*t"</span>,<span class="built_in">os</span>.<span class="built_in">time</span>()<span class="number">-36000</span>)</span><br></pre></td></tr></table></figure>
-<p>what if we don’t know the time offset, but know the timezone in linux environment,<br>one of the possible way is to using ‘zdump’ command in linux system<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">local</span> command= <span class="string">"zdump "</span></span><br><span class="line"><span class="keyword">local</span> handle = <span class="built_in">io</span>.<span class="built_in">popen</span>(command)</span><br><span class="line"><span class="keyword">local</span> result = handle:<span class="built_in">read</span>(<span class="string">"*a"</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line">handle:<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ck98edejg001n28iihruhq92r" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-awd-s3-go-sdk" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/11/awd-s3-go-sdk/">Go sdk for amazon AWs</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/09/11/awd-s3-go-sdk/" class="article-date"><time datetime="2017-09-11T12:01:27.000Z" itemprop="datePublished">2017-09-11</time></a>
-</div>
-
-    
-    
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##get the aws-go sdk<br>cd $GOPATH/src</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">go get github.com/aws/aws-sdk-go</span><br></pre></td></tr></table></figure>
-<p>##get the asw access key and secret</p>
-<p>get the access key and secret<br>reference:<br><a href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html</a></p>
-<p>get the data center region information<br>aws-sdk go requires region information of the data center<br><a href="http://docs.aws.amazon.com/general/latest/gr/rande.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/general/latest/gr/rande.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">export AWS_ACCESS_KEY_ID=your access key</span><br><span class="line">export AWS_SECRET_ACCESS_KEY=your access secret</span><br><span class="line">export AWS_REGION=ap-southeast-2</span><br></pre></td></tr></table></figure>
-<p>sample code</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"context"</span></span><br><span class="line">	<span class="string">"flag"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/aws"</span></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/aws/awserr"</span></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/aws/request"</span></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/aws/session"</span></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/service/s3"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Uploads a file to S3 given a bucket and object key. Also takes a duration</span></span><br><span class="line"><span class="comment">// value to terminate the update if it doesn't complete within that time.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// The AWS Region needs to be provided in the AWS shared config or on the</span></span><br><span class="line"><span class="comment">// environment variable as `AWS_REGION`. Credentials also must be provided</span></span><br><span class="line"><span class="comment">// Will default to shared config file, but can load from environment if provided.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Usage:</span></span><br><span class="line"><span class="comment">//   # Upload myfile.txt to myBucket/myKey. Must complete within 10 minutes or will fail</span></span><br><span class="line"><span class="comment">//   go run withContext.go -b mybucket -k myKey -d 10m &lt; myfile.txt</span></span><br><span class="line"><span class="function">func <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	var bucket, key string</span><br><span class="line">	var timeout time.Duration</span><br><span class="line"></span><br><span class="line">	flag.StringVar(&amp;bucket, <span class="string">"b"</span>, <span class="string">""</span>, <span class="string">"Bucket name."</span>)</span><br><span class="line">	flag.StringVar(&amp;key, <span class="string">"k"</span>, <span class="string">""</span>, <span class="string">"Object key name."</span>)</span><br><span class="line">	flag.DurationVar(&amp;timeout, <span class="string">"d"</span>, <span class="number">0</span>, <span class="string">"Upload timeout."</span>)</span><br><span class="line">	flag.Parse()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// All clients require a Session. The Session provides the client with</span></span><br><span class="line">	<span class="comment">// shared configuration such as region, endpoint, and credentials. A</span></span><br><span class="line">	<span class="comment">// Session should be shared where possible to take advantage of</span></span><br><span class="line">	<span class="comment">// configuration and credential caching. See the session package for</span></span><br><span class="line">	<span class="comment">// more information.</span></span><br><span class="line">	sess := session.Must(session.NewSession())</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Create a new instance of the service's client with a Session.</span></span><br><span class="line">	<span class="comment">// Optional aws.Config values can also be provided as variadic arguments</span></span><br><span class="line">	<span class="comment">// to the New function. This option allows you to provide service</span></span><br><span class="line">	<span class="comment">// specific configuration.</span></span><br><span class="line">	svc := s3.New(sess)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Create a context with a timeout that will abort the upload if it takes</span></span><br><span class="line">	<span class="comment">// more than the passed in timeout.</span></span><br><span class="line">	ctx := context.Background()</span><br><span class="line">	<span class="function">var cancelFn <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	<span class="keyword">if</span> timeout &gt; 0 </span>&#123;</span><br><span class="line">		ctx, cancelFn = context.WithTimeout(ctx, timeout)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Ensure the context is canceled to prevent leaking.</span></span><br><span class="line">	<span class="comment">// See context package for more information, https://golang.org/pkg/context/</span></span><br><span class="line">	<span class="function">defer <span class="title">cancelFn</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	<span class="comment">// Uploads the object to S3. The Context will interrupt the request if the</span></span></span><br><span class="line"><span class="function">	<span class="comment">// timeout expires.</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	inputObj :</span>= &amp;s3.PutObjectInput&#123;</span><br><span class="line">		Bucket: aws.String(bucket),</span><br><span class="line">		Key:    aws.String(key),</span><br><span class="line">		Body:   os.Stdin,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	inputObj.SetACL(s3.BucketCannedACLPublicRead)</span><br><span class="line"></span><br><span class="line">	_, err := svc.PutObjectWithContext(ctx, inputObj)</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		<span class="keyword">if</span> aerr, ok := err.(awserr.Error); ok &amp;&amp; aerr.Code() == request.CanceledErrorCode &#123;</span><br><span class="line">			<span class="comment">// If the SDK can determine the request or retry delay was canceled</span></span><br><span class="line">			<span class="comment">// by a context the CanceledErrorCode error code will be returned.</span></span><br><span class="line">			fmt.Fprintf(os.Stderr, <span class="string">"upload canceled due to timeout, %v\n"</span>, err)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			fmt.Fprintf(os.Stderr, <span class="string">"failed to upload object, %v\n"</span>, err)</span><br><span class="line">		&#125;</span><br><span class="line">		os.Exit(<span class="number">1</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"successfully uploaded file to %s/%s\n"</span>, bucket, key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>so run the main.go file to upload the local ‘myfile.txt’ file<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">go run main.go -b mybucket -k myKey -d 10m &lt; myfile.txt</span><br></pre></td></tr></table></figure></p>
-<p>##how to change ‘ACL’ (access control) </p>
-<p>S3 API support different ACL policy of an object, here is the example about how to change the file to ‘public’ read<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inputObj.SetACL(s3.BucketCannedACLPublicRead)</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ck98edeio000928iiy7vgy0fd" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws-go-sdk/">aws-go-sdk</a></li></ul>
 
 
     </footer>
@@ -762,7 +749,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -771,6 +758,14 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/07/27/java-begin-maven/">java use maven</a>
+        </li>
+      
+        <li>
+          <a href="/2020/05/19/tea-party-md/">tea_party.md</a>
+        </li>
       
         <li>
           <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
@@ -782,14 +777,6 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
       
         <li>
           <a href="/2019/11/01/support/">Use kafka in Golang</a>
-        </li>
-      
-        <li>
-          <a href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
-        </li>
-      
-        <li>
-          <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
         </li>
       
     </ul>

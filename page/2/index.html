@@ -74,6 +74,135 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-lua-date-time" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/13/lua-date-time/">date and time functions in lua</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/09/13/lua-date-time/" class="article-date"><time datetime="2017-09-13T06:55:22.000Z" itemprop="datePublished">2017-09-13</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>os.date ([format [, time]])</p>
+<p>Returns a string or a table containing date and time, formatted according to the given string format.</p>
+<p>If the time argument is present, this is the time to be formatted (see the os.time function for a description of this value). Otherwise, date formats the current time.</p>
+<p>If format starts with ‘!’, then the date is formatted in Coordinated Universal Time. After this optional character, if format is the string “*t”, then date returns a table with the following fields: year (four digits), month (1–12), day (1–31), hour (0–23), min (0–59), sec (0–61), wday (weekday, Sunday is 1), yday (day of the year), and isdst (daylight saving flag, a boolean).</p>
+<p>If format is not “*t”, then date returns the date as a string, formatted according to the same rules as the C function strftime.</p>
+<p>When called without arguments, date returns a reasonable date and time representation that depends on the host system and on the current locale (that is, os.date() is equivalent to os.date(“%c”)).</p>
+<p>os.time ([table])</p>
+<p>Returns the current time when called without arguments, or a time representing the date and time specified by the given table. This table must have fields year, month, and day, and may have fields hour, min, sec, and isdst (for a description of these fields, see the os.date function).</p>
+<p>The returned value is a number, whose meaning depends on your system. In POSIX, Windows, and some other systems, this number counts the number of seconds since some given start time (the “epoch”). In other systems, the meaning is not specified, and the number returned by time can be used only as an argument to date and difftime.</p>
+<p>code examples</p>
+<p>get the current time as a table variable<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">os</span>.<span class="built_in">date</span>(<span class="string">"*t"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>get the time based on the time offset, if we know the time offset, we can get time with a different timezone with current system setting</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- offset is -10 hours, which is 36000 in seconds</span></span><br><span class="line"><span class="keyword">local</span> t = <span class="built_in">os</span>.<span class="built_in">date</span>(<span class="string">"*t"</span>,<span class="built_in">os</span>.<span class="built_in">time</span>()<span class="number">-36000</span>)</span><br></pre></td></tr></table></figure>
+<p>what if we don’t know the time offset, but know the timezone in linux environment,<br>one of the possible way is to using ‘zdump’ command in linux system<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">local</span> command= <span class="string">"zdump "</span></span><br><span class="line"><span class="keyword">local</span> handle = <span class="built_in">io</span>.<span class="built_in">popen</span>(command)</span><br><span class="line"><span class="keyword">local</span> result = handle:<span class="built_in">read</span>(<span class="string">"*a"</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line">handle:<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ckd4j2tdg001t8jiihery2oj3" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-awd-s3-go-sdk" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/11/awd-s3-go-sdk/">Go sdk for amazon AWs</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/09/11/awd-s3-go-sdk/" class="article-date"><time datetime="2017-09-11T12:01:27.000Z" itemprop="datePublished">2017-09-11</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##get the aws-go sdk<br>cd $GOPATH/src</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">go get github.com/aws/aws-sdk-go</span><br></pre></td></tr></table></figure>
+<p>##get the asw access key and secret</p>
+<p>get the access key and secret<br>reference:<br><a href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html</a></p>
+<p>get the data center region information<br>aws-sdk go requires region information of the data center<br><a href="http://docs.aws.amazon.com/general/latest/gr/rande.html" target="_blank" rel="noopener">http://docs.aws.amazon.com/general/latest/gr/rande.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">export AWS_ACCESS_KEY_ID=your access key</span><br><span class="line">export AWS_SECRET_ACCESS_KEY=your access secret</span><br><span class="line">export AWS_REGION=ap-southeast-2</span><br></pre></td></tr></table></figure>
+<p>sample code</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"context"</span></span><br><span class="line">	<span class="string">"flag"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/aws"</span></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/aws/awserr"</span></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/aws/request"</span></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/aws/session"</span></span><br><span class="line">	<span class="string">"github.com/aws/aws-sdk-go/service/s3"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Uploads a file to S3 given a bucket and object key. Also takes a duration</span></span><br><span class="line"><span class="comment">// value to terminate the update if it doesn't complete within that time.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// The AWS Region needs to be provided in the AWS shared config or on the</span></span><br><span class="line"><span class="comment">// environment variable as `AWS_REGION`. Credentials also must be provided</span></span><br><span class="line"><span class="comment">// Will default to shared config file, but can load from environment if provided.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Usage:</span></span><br><span class="line"><span class="comment">//   # Upload myfile.txt to myBucket/myKey. Must complete within 10 minutes or will fail</span></span><br><span class="line"><span class="comment">//   go run withContext.go -b mybucket -k myKey -d 10m &lt; myfile.txt</span></span><br><span class="line"><span class="function">func <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	var bucket, key string</span><br><span class="line">	var timeout time.Duration</span><br><span class="line"></span><br><span class="line">	flag.StringVar(&amp;bucket, <span class="string">"b"</span>, <span class="string">""</span>, <span class="string">"Bucket name."</span>)</span><br><span class="line">	flag.StringVar(&amp;key, <span class="string">"k"</span>, <span class="string">""</span>, <span class="string">"Object key name."</span>)</span><br><span class="line">	flag.DurationVar(&amp;timeout, <span class="string">"d"</span>, <span class="number">0</span>, <span class="string">"Upload timeout."</span>)</span><br><span class="line">	flag.Parse()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// All clients require a Session. The Session provides the client with</span></span><br><span class="line">	<span class="comment">// shared configuration such as region, endpoint, and credentials. A</span></span><br><span class="line">	<span class="comment">// Session should be shared where possible to take advantage of</span></span><br><span class="line">	<span class="comment">// configuration and credential caching. See the session package for</span></span><br><span class="line">	<span class="comment">// more information.</span></span><br><span class="line">	sess := session.Must(session.NewSession())</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Create a new instance of the service's client with a Session.</span></span><br><span class="line">	<span class="comment">// Optional aws.Config values can also be provided as variadic arguments</span></span><br><span class="line">	<span class="comment">// to the New function. This option allows you to provide service</span></span><br><span class="line">	<span class="comment">// specific configuration.</span></span><br><span class="line">	svc := s3.New(sess)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Create a context with a timeout that will abort the upload if it takes</span></span><br><span class="line">	<span class="comment">// more than the passed in timeout.</span></span><br><span class="line">	ctx := context.Background()</span><br><span class="line">	<span class="function">var cancelFn <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	<span class="keyword">if</span> timeout &gt; 0 </span>&#123;</span><br><span class="line">		ctx, cancelFn = context.WithTimeout(ctx, timeout)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Ensure the context is canceled to prevent leaking.</span></span><br><span class="line">	<span class="comment">// See context package for more information, https://golang.org/pkg/context/</span></span><br><span class="line">	<span class="function">defer <span class="title">cancelFn</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	<span class="comment">// Uploads the object to S3. The Context will interrupt the request if the</span></span></span><br><span class="line"><span class="function">	<span class="comment">// timeout expires.</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">	inputObj :</span>= &amp;s3.PutObjectInput&#123;</span><br><span class="line">		Bucket: aws.String(bucket),</span><br><span class="line">		Key:    aws.String(key),</span><br><span class="line">		Body:   os.Stdin,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	inputObj.SetACL(s3.BucketCannedACLPublicRead)</span><br><span class="line"></span><br><span class="line">	_, err := svc.PutObjectWithContext(ctx, inputObj)</span><br><span class="line">	<span class="keyword">if</span> err != nil &#123;</span><br><span class="line">		<span class="keyword">if</span> aerr, ok := err.(awserr.Error); ok &amp;&amp; aerr.Code() == request.CanceledErrorCode &#123;</span><br><span class="line">			<span class="comment">// If the SDK can determine the request or retry delay was canceled</span></span><br><span class="line">			<span class="comment">// by a context the CanceledErrorCode error code will be returned.</span></span><br><span class="line">			fmt.Fprintf(os.Stderr, <span class="string">"upload canceled due to timeout, %v\n"</span>, err)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			fmt.Fprintf(os.Stderr, <span class="string">"failed to upload object, %v\n"</span>, err)</span><br><span class="line">		&#125;</span><br><span class="line">		os.Exit(<span class="number">1</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"successfully uploaded file to %s/%s\n"</span>, bucket, key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>so run the main.go file to upload the local ‘myfile.txt’ file<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">go run main.go -b mybucket -k myKey -d 10m &lt; myfile.txt</span><br></pre></td></tr></table></figure></p>
+<p>##how to change ‘ACL’ (access control) </p>
+<p>S3 API support different ACL policy of an object, here is the example about how to change the file to ‘public’ read<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inputObj.SetACL(s3.BucketCannedACLPublicRead)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ckd4j2tce00068jii4zoklu5e" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws-go-sdk/">aws-go-sdk</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-http-performance-testing" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -166,7 +295,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ck98edeiy000p28ii371yqikw" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ckd4j2td1000x8jiilab888jt" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -226,7 +355,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ck98edeip000a28iis5cd3iw6" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ckd4j2tcl000g8jiivcpt21yy" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -290,7 +419,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ck98edeis000g28iisde8b3w1" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ckd4j2tcs000l8jiikecpczhq" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -351,7 +480,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ck98edeiw000j28ii9qp4hpui" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ckd4j2tcu000n8jiilrbg2sjh" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -410,7 +539,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ck98edejf001k28iig87joug7" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ckd4j2tde001p8jii6io5ma1q" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -470,7 +599,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ck98edeje001i28iicay0i5g6" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ckd4j2tdd001m8jii463obu2n" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -535,7 +664,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ck98edejc001c28iim8625wlq" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ckd4j2tdb001h8jiij2ycy6u9" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -595,133 +724,12 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ck98edeim000628iiwffiwa3i" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ckd4j2tcd00058jiiisehr3s5" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-arrays-sort/">java, arrays.sort</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-leetcode-Number-Complement" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/24/leetcode-Number-Complement/">leetcode-Number-Complement</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/08/24/leetcode-Number-Complement/" class="article-date"><time datetime="2017-08-24T12:21:14.000Z" itemprop="datePublished">2017-08-24</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.</p>
-<p>Note:<br>The given integer is guaranteed to fit within the range of a 32-bit signed integer.<br>You could assume no leading zero bit in the integer’s binary representation.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line">Input: 5</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findComplement(int num) &#123;</span><br><span class="line">        long i;</span><br><span class="line">        for(i=1;i&lt;=num;i*=2) num^=i; </span><br><span class="line">        return num;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ck98edej4001328iiu5mdy13t" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-leetcode-Reverse-Words-in-a-String-III" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/23/leetcode-Reverse-Words-in-a-String-III/">leetcode-Reverse-Words-in-a-String-III</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" class="article-date"><time datetime="2017-08-23T12:14:53.000Z" itemprop="datePublished">2017-08-23</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line">Input: &quot;Let&apos;s take LeetCode contest&quot;</span><br><span class="line">Output: &quot;s&apos;teL ekat edoCteeL tsetnoc&quot;</span><br><span class="line">Note: In the string, each word is separated by single space and there will not be any extra space in the string.</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseSingle</span><span class="params">(String c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] str = c.toCharArray();</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> tmp;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(i &lt; c.length()/<span class="number">2</span>)&#123;</span><br><span class="line">            tmp = str[i];</span><br><span class="line">            str[i] = str[c.length()-<span class="number">1</span>-i];</span><br><span class="line">            str[c.length()-<span class="number">1</span>-i] = tmp;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(str);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        String[] m = s.split(<span class="string">" "</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        String res = <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; m.length; i++)&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (res.length() == <span class="number">0</span>)&#123;</span><br><span class="line">                res += reverseSingle(m[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res = res + <span class="string">" "</span> + reverseSingle(m[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>someone post another way using the natural StringBuilder class,<br>it has ‘reverse’ method,</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    String[] str = s.split(<span class="string">" "</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length; i++) str[i] = <span class="keyword">new</span> StringBuilder(str[i]).reverse().toString();</span><br><span class="line">    StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (String st : str) result.append(st + <span class="string">" "</span>);</span><br><span class="line">    <span class="keyword">return</span> result.toString().trim();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ck98edejd001e28iievyosny1" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
 
     </footer>
@@ -761,7 +769,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -770,6 +778,14 @@ And keepalive (which is default) can be disabled using:
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/07/27/java-begin-maven/">java use maven</a>
+        </li>
+      
+        <li>
+          <a href="/2020/05/19/tea-party-md/">tea_party.md</a>
+        </li>
       
         <li>
           <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
@@ -781,14 +797,6 @@ And keepalive (which is default) can be disabled using:
       
         <li>
           <a href="/2019/11/01/support/">Use kafka in Golang</a>
-        </li>
-      
-        <li>
-          <a href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
-        </li>
-      
-        <li>
-          <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
         </li>
       
     </ul>

@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Category: leetcode binary tree | Ye&#39;s Tech Blog</title>
+  <title>java use maven | Ye&#39;s Tech Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ye&#39;s Tech Blog">
-<meta property="og:url" content="https://wy3148.github.io/categories/leetcode-binary-tree/index.html">
+  <meta name="description" content="maven maven local cachelocal cache $Default_user_dir/.m2/repository reference:https://maven.apache.org/index.html maven pom.xmlmaven.compiler plugin is used to specifi the jave SDK version,in my local">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java use maven">
+<meta property="og:url" content="https://wy3148.github.io/2020/07/27/java-begin-maven/index.html">
 <meta property="og:site_name" content="Ye&#39;s Tech Blog">
+<meta property="og:description" content="maven maven local cachelocal cache $Default_user_dir/.m2/repository reference:https://maven.apache.org/index.html maven pom.xmlmaven.compiler plugin is used to specifi the jave SDK version,in my local">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-07-27T13:08:45.731Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ye&#39;s Tech Blog">
+<meta name="twitter:title" content="java use maven">
+<meta name="twitter:description" content="maven maven local cachelocal cache $Default_user_dir/.m2/repository reference:https://maven.apache.org/index.html maven pom.xmlmaven.compiler plugin is used to specifi the jave SDK version,in my local">
   
     <link rel="alternate" href="/atom.xml" title="Ye&#39;s Tech Blog" type="application/atom+xml">
   
@@ -72,80 +77,83 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
+          <article id="post-java-begin-maven" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
     
+  
+    <h1 class="article-title" itemprop="name">
+      java use maven
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2020/07/27/java-begin-maven/" class="article-date"><time datetime="2020-07-27T11:55:53.000Z" itemprop="datePublished">2020-07-27</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>maven</p>
+<h1 id="maven-local-cache"><a href="#maven-local-cache" class="headerlink" title="maven local cache"></a>maven local cache</h1><p>local cache</p>
+<p>$Default_user_dir/.m2/repository</p>
+<p>reference:<br><a href="https://maven.apache.org/index.html" target="_blank" rel="noopener">https://maven.apache.org/index.html</a></p>
+<h1 id="maven-pom-xml"><a href="#maven-pom-xml" class="headerlink" title="maven pom.xml"></a>maven pom.xml</h1><p>maven.compiler plugin is used to specifi the jave SDK version,<br>in my local mac, after mvn init , the default version which is 1.7<br>which might be too old.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;properties&gt;</span><br><span class="line">  &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">  &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">  &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+<p>User should validate the local java sdk, run ‘java -version’, for example,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">openjdk version <span class="string">"14.0.2"</span> <span class="number">2020</span>-<span class="number">07</span>-<span class="number">14</span></span><br><span class="line"><span class="function">OpenJDK Runtime <span class="title">Environment</span> <span class="params">(build <span class="number">14.0</span><span class="number">.2</span>+<span class="number">12</span><span class="number">-46</span>)</span></span></span><br><span class="line"><span class="function">OpenJDK 64-Bit Server <span class="title">VM</span> <span class="params">(build <span class="number">14.0</span><span class="number">.2</span>+<span class="number">12</span><span class="number">-46</span>, mixed mode, sharing)</span></span></span><br></pre></td></tr></table></figure>
+<p>#java sdk version is important</p>
+<p>for example, java sdk 1.7 only has constructor in priority queue</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PriorityQueue(<span class="keyword">int</span> initialCapacity, Comparator&lt;? <span class="keyword">super</span> E&gt; comparator)</span><br></pre></td></tr></table></figure>
+<p>while java sdk1.8 has a new contrustor</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PriorityQueue(Comparator&lt;? <span class="keyword">super</span> E&gt; comparator)</span><br></pre></td></tr></table></figure>
+<p>java SDK will use a default size when create a new PriorityQueue</p>
+
+      
+    </div>
+
     
       
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2020/07/27/java-begin-maven/" data-id="ckd4j2td3000z8jiitbwqyiws" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/25/leetcode-binary-tree-max-depth/">leetcode-binary-tree-max-depth</a>
-    </h1>
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
   
+  <li role="presentation">
+    <a href="/2020/05/19/tea-party-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">tea_party.md</span>
+    </a>
+  </li>
+  
+  
+</ul>
 
 
-    <div class="article-datetime">
-  <a href="/2017/08/25/leetcode-binary-tree-max-depth/" class="archive-article-date"><time datetime="2017-08-25T12:14:54.000Z" itemprop="datePublished">August 25th</time></a>
-</div>
-
-  </header>
+  
 </article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/23/leetcode-Array-Partition-I/">leetcode-Array-Partition-I</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/2017/08/23/leetcode-Array-Partition-I/" class="archive-article-date"><time datetime="2017-08-23T11:37:10.000Z" itemprop="datePublished">August 23rd</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/23/leetcode-Merge-Two-Binary-Trees/">leetcode-Merge-Two-Binary-Trees</a>
-    </h1>
-  
-
-
-    <div class="article-datetime">
-  <a href="/2017/08/23/leetcode-Merge-Two-Binary-Trees/" class="archive-article-date"><time datetime="2017-08-23T06:12:18.000Z" itemprop="datePublished">August 23rd</time></a>
-</div>
-
-  </header>
-</article>
-
-  
-  
-    </div></section>
-  
 
 
 

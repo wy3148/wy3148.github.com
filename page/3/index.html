@@ -74,6 +74,127 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-leetcode-Number-Complement" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/24/leetcode-Number-Complement/">leetcode-Number-Complement</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/24/leetcode-Number-Complement/" class="article-date"><time datetime="2017-08-24T12:21:14.000Z" itemprop="datePublished">2017-08-24</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.</p>
+<p>Note:<br>The given integer is guaranteed to fit within the range of a 32-bit signed integer.<br>You could assume no leading zero bit in the integer’s binary representation.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line">Input: 5</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int findComplement(int num) &#123;</span><br><span class="line">        long i;</span><br><span class="line">        for(i=1;i&lt;=num;i*=2) num^=i; </span><br><span class="line">        return num;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ckd4j2tda001d8jiiizaj4ne6" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-leetcode-Reverse-Words-in-a-String-III" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/23/leetcode-Reverse-Words-in-a-String-III/">leetcode-Reverse-Words-in-a-String-III</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" class="article-date"><time datetime="2017-08-23T12:14:53.000Z" itemprop="datePublished">2017-08-23</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line">Input: &quot;Let&apos;s take LeetCode contest&quot;</span><br><span class="line">Output: &quot;s&apos;teL ekat edoCteeL tsetnoc&quot;</span><br><span class="line">Note: In the string, each word is separated by single space and there will not be any extra space in the string.</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseSingle</span><span class="params">(String c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] str = c.toCharArray();</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> tmp;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(i &lt; c.length()/<span class="number">2</span>)&#123;</span><br><span class="line">            tmp = str[i];</span><br><span class="line">            str[i] = str[c.length()-<span class="number">1</span>-i];</span><br><span class="line">            str[c.length()-<span class="number">1</span>-i] = tmp;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(str);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        String[] m = s.split(<span class="string">" "</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        String res = <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; m.length; i++)&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (res.length() == <span class="number">0</span>)&#123;</span><br><span class="line">                res += reverseSingle(m[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res = res + <span class="string">" "</span> + reverseSingle(m[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>someone post another way using the natural StringBuilder class,<br>it has ‘reverse’ method,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    String[] str = s.split(<span class="string">" "</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length; i++) str[i] = <span class="keyword">new</span> StringBuilder(str[i]).reverse().toString();</span><br><span class="line">    StringBuilder result = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (String st : str) result.append(st + <span class="string">" "</span>);</span><br><span class="line">    <span class="keyword">return</span> result.toString().trim();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ckd4j2tdc001j8jii5vqgglol" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-leetcode-Array-Partition-I" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -125,7 +246,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ck98edej1000u28iinv73tj37" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ckd4j2td400128jiiwt5c5xuw" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -188,7 +309,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ck98edej6001728iid9px6qec" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ckd4j2td9001b8jiihev9ism6" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -247,7 +368,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ck98edejb001828iiqu695x93" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ckd4j2td800188jiijiames8j" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -306,7 +427,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ck98edej3001028ii7upiz90e" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ckd4j2td600158jii6jav9ynm" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -370,7 +491,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ck98edeig000228iieh1mxl1y" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ckd4j2tc900028jiizz0vtth9" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -438,7 +559,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/02/2017-08-02-zookeeper-play1/" data-id="ck98edeij000428ii28mbm0fn" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/02/2017-08-02-zookeeper-play1/" data-id="ckd4j2tc200008jiin0fxyd7i" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -493,7 +614,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/07/31/2017-07-31-welcome-to-jekyll/" data-id="ck98edei9000028iihmuwexzz" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/07/31/2017-07-31-welcome-to-jekyll/" data-id="ckd4j2tcg00088jiib0yy5sqh" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -536,7 +657,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -545,6 +666,14 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/07/27/java-begin-maven/">java use maven</a>
+        </li>
+      
+        <li>
+          <a href="/2020/05/19/tea-party-md/">tea_party.md</a>
+        </li>
       
         <li>
           <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
@@ -556,14 +685,6 @@ https://www.tutorialspoint.com/zookeeper/index.htm
       
         <li>
           <a href="/2019/11/01/support/">Use kafka in Golang</a>
-        </li>
-      
-        <li>
-          <a href="/2019/10/22/golang-webservice-data-orm/">Use golang to develop webservice-ORM/Relation database</a>
-        </li>
-      
-        <li>
-          <a href="/2019/10/21/use-golang-web-server-2/">Use Golang to develop web service-2</a>
         </li>
       
     </ul>
