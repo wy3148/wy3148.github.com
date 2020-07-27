@@ -74,6 +74,61 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-lua-string-match" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/18/lua-string-match/">lua-string match the magic characters</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2019/01/18/lua-string-match/" class="article-date"><time datetime="2019-01-17T23:47:59.000Z" itemprop="datePublished">2019-01-18</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>to escapse the  magic character , we have to use ‘%’ to turn off pattern match when call string.find or gsub functions</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function test_string()</span><br><span class="line">    local name = &quot;res$&#123;CALLERID(name)&#125;&quot;</span><br><span class="line">    local s1,s2 = string.gsub(name,&quot;$%&#123;CALLERID%(name%)%&#125;&quot;, &quot;lilizhou&quot;)</span><br><span class="line">    print(s1)</span><br><span class="line">    print(s2)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>in the exampe, we try to replace the whole string ‘${CALLERID(name)}’ with a new string.</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ckd4kwcez0022eaiizfoz1knh" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-lua-date-time" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -124,7 +179,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ckd4jewda001sfhiibugm5puq" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ckd4kwcer001teaiipf5jk588" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -187,7 +242,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ckd4jewcb0004fhiih7obx0yd" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ckd4kwcdx0009eaiivqudkv4c" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -295,7 +350,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ckd4jewcx000yfhiih0kgz5i6" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ckd4kwce8000teaiib1cxqswm" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -355,7 +410,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ckd4jewci000efhiifk8d3i0o" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ckd4kwcdy000ceaii0beijnwb" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -419,7 +474,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ckd4jewcs000pfhii4jojn86l" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ckd4kwce0000feaiix5qmaauv" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -480,7 +535,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ckd4jewcl000jfhiim9pj1tu8" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ckd4kwce4000keaiiybb5dvst" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -539,7 +594,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ckd4jewd9001ofhiigv18gvug" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ckd4kwceo001qeaiicbldj4yh" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -599,7 +654,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ckd4jewd7001lfhiipvljk9dn" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ckd4kwcen001oeaiik15zzv02" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -664,72 +719,12 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ckd4jewd6001hfhiijiswogk6" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ckd4kwcek001heaii9yqyopvg" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="leetcode-distribute-Candies" class="article article-type-leetcode-distribute" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/24/Candies/">Candies</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/08/24/Candies/" class="article-date"><time datetime="2017-08-24T13:17:05.000Z" itemprop="datePublished">2017-08-24</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an integer array with even length, where different numbers in this array represent different kinds of candies. Each number means one candy of the corresponding kind. You need to distribute these candies equally in number to brother and sister. Return the maximum number of kinds of candies the sister could gain.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line">Input: candies = [1,1,2,2,3,3]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">There are three different kinds of candies (1, 2 and 3), and two candies for each kind.</span><br><span class="line">Optimal distribution: The sister has candies [1,2,3] and the brother has candies [1,2,3], too. </span><br><span class="line">The sister has three different kinds of candies. </span><br><span class="line">Example 2:</span><br><span class="line">Input: candies = [1,1,2,3]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: For example, the sister has candies [2,3] and the brother has candies [1,1]</span><br><span class="line">. </span><br><span class="line">The sister has two different kinds of candies, the brother has only one kind of candies.</span><br></pre></td></tr></table></figure>
-<p>Note:</p>
-<p>The length of the given array is in range [2, 10,000], and will be even.<br>The number in given array is in range [-100,000, 100,000].</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int distributeCandies(int[] candies) &#123;</span><br><span class="line">        </span><br><span class="line">       int len = candies.length;</span><br><span class="line">        </span><br><span class="line">        if (len &lt;= 0) return 0;</span><br><span class="line">        </span><br><span class="line">        int max = len/2;</span><br><span class="line">        int count = 1;</span><br><span class="line">        int i;</span><br><span class="line">        </span><br><span class="line">        Arrays.sort(candies);</span><br><span class="line">    </span><br><span class="line">        int prev = candies[0];</span><br><span class="line">        </span><br><span class="line">        for( i = 1; i &lt; len; i++)&#123;</span><br><span class="line">            if (candies[i] != prev)&#123;                </span><br><span class="line">                count++;</span><br><span class="line">                prev = candies[i];</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (count &gt;= max) return max;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return (count &gt; max ? max: count);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ckd4jewc90003fhiille8nj3c" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-arrays-sort/">java, arrays.sort</a></li></ul>
 
 
     </footer>
@@ -761,7 +756,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java/">java</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -769,7 +764,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -778,6 +773,10 @@ And keepalive (which is default) can be disabled using:
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/07/27/java-simple-redis/">java_simple_redis</a>
+        </li>
       
         <li>
           <a href="/2020/07/27/java-begin-maven/">java use maven</a>
@@ -793,10 +792,6 @@ And keepalive (which is default) can be disabled using:
       
         <li>
           <a href="/2019/11/22/elastic-notes-1/">elasticsearch notes-1</a>
-        </li>
-      
-        <li>
-          <a href="/2019/11/01/support/">Use kafka in Golang</a>
         </li>
       
     </ul>
