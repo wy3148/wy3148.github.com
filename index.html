@@ -74,6 +74,69 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-java-arraylist-linkedlist" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/28/java-arraylist-linkedlist/">ArrayList vs LinkedList &lt; Element&gt; in Java</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2020/07/28/java-arraylist-linkedlist/" class="article-date"><time datetime="2020-07-28T13:53:30.000Z" itemprop="datePublished">2020-07-28</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##ArrayList</p>
+<p>ArrayList internally is actually a dynamic array</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">8683452581122892189L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Default initial capacity.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Shared empty array instance used for empty instances.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Shared empty array instance used for default sized empty instances. We</span></span><br><span class="line"><span class="comment">     * distinguish this from EMPTY_ELEMENTDATA to know how much to inflate when</span></span><br><span class="line"><span class="comment">     * first element is added.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The array buffer into which the elements of the ArrayList are stored.</span></span><br><span class="line"><span class="comment">     * The capacity of the ArrayList is the length of this array buffer. Any</span></span><br><span class="line"><span class="comment">     * empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span></span><br><span class="line"><span class="comment">     * will be expanded to DEFAULT_CAPACITY when the first element is added.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">transient</span> Object[] elementData; <span class="comment">// non-private to simplify nested class access</span></span><br></pre></td></tr></table></figure>
+<p>And if we look at the constructor<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+</span><br><span class="line">                                           initialCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Initlally, it tries to create an empty array or a new array with ‘initialCapacity’;</p>
+<p>##LinkedList</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">extends</span> <span class="title">AbstractSequentialList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">Deque</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">transient</span> <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Pointer to first node.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">transient</span> Node&lt;E&gt; first;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Pointer to last node.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">transient</span> Node&lt;E&gt; last;</span><br></pre></td></tr></table></figure>
+<p>LinkedList internally is actually a double linked list, it has head and tail (first, last node) information.</p>
+<p>So when get(index) to get an element,  in array, the time complexitiy is O(1); but linkedlist is O(n);</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//array</span></span><br><span class="line">   <span class="function">E <span class="title">elementData</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> (E) elementData[index];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//linked list</span></span><br><span class="line">       <span class="function">Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// assert isElementIndex(index);</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (index &lt; (size &gt;&gt; <span class="number">1</span>)) &#123;</span><br><span class="line">           Node&lt;E&gt; x = first;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">               x = x.next;</span><br><span class="line">           <span class="keyword">return</span> x;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           Node&lt;E&gt; x = last;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt; index; i--)</span><br><span class="line">               x = x.prev;</span><br><span class="line">           <span class="keyword">return</span> x;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>More details can be found in java SDK, It seems most of time we can use ArrayList.<br>Which is similar we use ‘Vector’ in C++;</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2020/07/28/java-arraylist-linkedlist/" data-id="ckd60ga5y000w0liij4mm763h" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-java-jdbc-mysql" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -116,7 +179,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2020/07/28/java-jdbc-mysql/" data-id="ckd5uh94z000shgiin6y2o3j5" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2020/07/28/java-jdbc-mysql/" data-id="ckd60ga6700100liiovoxqmfu" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -175,7 +238,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2020/07/27/java-simple-redis/" data-id="ckd5uh9580019hgiiieb99akg" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2020/07/27/java-simple-redis/" data-id="ckd60ga6900150liicudfohcg" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -245,7 +308,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2020/07/27/java-begin-maven/" data-id="ckd5uh9540011hgiirl29d3d6" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2020/07/27/java-begin-maven/" data-id="ckd60ga65000z0liidc8v9c98" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -297,7 +360,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2020/05/19/tea-party-md/" data-id="ckd5uh95r002dhgiittxparz5" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2020/05/19/tea-party-md/" data-id="ckd60ga7n002a0liiceg5dcbe" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -364,7 +427,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2020/04/20/binary-search-all/" data-id="ckd5uh94k000ahgiiinbjtei0" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2020/04/20/binary-search-all/" data-id="ckd60ga4i00080lii4m1c41lu" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -429,7 +492,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/11/22/elastic-notes-1/" data-id="ckd5uh94m000dhgii7hoin2l3" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/11/22/elastic-notes-1/" data-id="ckd60ga4k00090liilieymh9b" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -503,7 +566,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/11/01/support/" data-id="ckd5uh95p0029hgii3onuf6n1" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/11/01/support/" data-id="ckd60ga7l00270lii1tju1k58" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -561,7 +624,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/" data-id="ckd5uh951000yhgii9nybeksu" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/22/golang-webservice-data-orm/" data-id="ckd60ga5s000q0lii7i96dq67" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -640,74 +703,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ckd5uh95s002ghgii74v46uv2" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-golang-web-server-1" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/20/golang-web-server-1/">Use Golang to develop web service--gorilla/mux</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2019/10/20/golang-web-server-1/" class="article-date"><time datetime="2019-10-20T10:58:05.000Z" itemprop="datePublished">2019-10-20</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/golang/">golang</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>This is simple notes about using opensource gorilla/mux to implement API service</p>
-<p>#Define the router</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">router := mux.NewRouter()</span><br><span class="line"></span><br><span class="line">//try to get a product by its unique id</span><br><span class="line">router.HandleFunc(&quot;/product/&#123;id&#125;&quot;, getProduct).Methods(&quot;GET&quot;)</span><br><span class="line"></span><br><span class="line">//post a new product, POST method is allowed only</span><br><span class="line">router.HandleFunc(&quot;/product&quot;, newProduct).Methods(&quot;POST&quot;)</span><br><span class="line"></span><br><span class="line">//a more general api example</span><br><span class="line">router.HandleFunc(&quot;/api/health&quot;, func(w http.ResponseWriter, r *http.Request) &#123;</span><br><span class="line">	// an example API handler</span><br><span class="line">	json.NewEncoder(w).Encode(map[string]bool&#123;&quot;ok&quot;: true&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getProduct</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//this is about how to get router variables</span></span><br><span class="line">	<span class="comment">//in this example it is 'id' </span></span><br><span class="line">	<span class="comment">//vars['id']</span></span><br><span class="line">	vars := mux.Vars(r)</span><br><span class="line">	w.WriteHeader(http.StatusOK)</span><br><span class="line">	fmt.Println(vars)</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//extra variabes /product/1/filter=last5mins</span></span><br><span class="line">	r.ParseForm()</span><br><span class="line">	filterRule := r.FormValue(<span class="string">"filter"</span>)</span><br><span class="line">	fmt.Println(filterRule)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Product <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name   <span class="keyword">string</span></span><br><span class="line">	Price  <span class="keyword">int</span></span><br><span class="line">	Vendor <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newProduct</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> p Product</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//this is about parse the POST body request into a </span></span><br><span class="line">	<span class="comment">//golang struct </span></span><br><span class="line">	<span class="keyword">if</span> err := json.NewDecoder(r.Body).Decode(&amp;p); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		w.WriteHeader(http.StatusBadRequest)</span><br><span class="line">		w.Write([]<span class="keyword">byte</span>(err.Error()))</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(p.Name, p.Price)</span><br><span class="line">	w.WriteHeader(http.StatusOK)</span><br><span class="line">	w.Write([]<span class="keyword">byte</span>(<span class="string">"ok"</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>#use a subrouter</p>
-<p>we can define a prefix sub router<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">s := router.PathPrefix(&quot;/clothes&quot;).Subrouter()</span><br><span class="line"></span><br><span class="line">//http: //localhost:8000/clothes/</span><br><span class="line">s.HandleFunc(&quot;/&quot;, listClothes)</span><br><span class="line"></span><br><span class="line">//http://localhost:8000/clothes/1123</span><br><span class="line">s.HandleFunc(&quot;/&#123;id&#125;&quot;, getClothes)</span><br><span class="line"></span><br><span class="line">//http://localhost:8000/clothes/1123/details</span><br><span class="line"></span><br><span class="line">s.HandleFunc(&quot;/&#123;id&#125;/details&quot;, getClothesDetails)</span><br></pre></td></tr></table></figure></p>
-<p>#use middleware </p>
-<p>Here is Autentication middleware, if authorization fails, return error</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// Define our struct</span><br><span class="line">type authenticationMiddleware struct &#123;</span><br><span class="line">	tokenUsers map[string]string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Initialize it somewhere</span><br><span class="line">func (amw *authenticationMiddleware) Populate() &#123;</span><br><span class="line">	amw.tokenUsers[&quot;00000000&quot;] = &quot;user0&quot;</span><br><span class="line">	amw.tokenUsers[&quot;aaaaaaaa&quot;] = &quot;userA&quot;</span><br><span class="line">	amw.tokenUsers[&quot;05f717e5&quot;] = &quot;randomUser&quot;</span><br><span class="line">	amw.tokenUsers[&quot;deadbeef&quot;] = &quot;user0&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Middleware function, which will be called for each request</span><br><span class="line">func (amw *authenticationMiddleware) Middleware(next http.Handler) http.Handler &#123;</span><br><span class="line">    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) &#123;</span><br><span class="line">        token := r.Header.Get(&quot;X-Session-Token&quot;)</span><br><span class="line"></span><br><span class="line">        if user, found := amw.tokenUsers[token]; found &#123;</span><br><span class="line">        	// We found the token in our map</span><br><span class="line">        	log.Printf(&quot;Authenticated user %s\n&quot;, user)</span><br><span class="line">        	// Pass down the request to the next middleware (or final handler)</span><br><span class="line">        	next.ServeHTTP(w, r)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">        	// Write an error and stop the handler chain</span><br><span class="line">        	http.Error(w, &quot;Forbidden&quot;, http.StatusForbidden)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>it support multiple middlewares</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">func loggingMiddleware(next http.Handler) http.Handler &#123;</span><br><span class="line">	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) &#123;</span><br><span class="line">		// Do stuff here</span><br><span class="line">		log.Println(&quot;middleware is called:&quot;, r.RequestURI)</span><br><span class="line">		// Call the next handler, which can be another middleware in the chain, or the final handler.</span><br><span class="line">		next.ServeHTTP(w, r)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	router := mux.NewRouter()</span><br><span class="line">	router.Use(loggingMiddleware)</span><br><span class="line">	amw := authenticationMiddleware&#123;&#125;</span><br><span class="line">	amw.tokenUsers = make(map[string]string)</span><br><span class="line">	amw.Populate()</span><br><span class="line">	router.Use(amw.Middleware)</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/10/20/golang-web-server-1/" data-id="ckd5uh94x000ohgii09szcy7y" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/10/21/use-golang-web-server-2/" data-id="ckd60ga7q002d0liiu2j1t4dw" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -752,7 +748,7 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -761,6 +757,10 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/07/28/java-arraylist-linkedlist/">ArrayList vs LinkedList &lt; Element&gt; in Java</a>
+        </li>
       
         <li>
           <a href="/2020/07/28/java-jdbc-mysql/">simple jdbc example to connect mysql</a>
@@ -776,10 +776,6 @@ fmt.Println(&quot;reading server:&quot;, dev[&quot;server&quot;].(string))
       
         <li>
           <a href="/2020/05/19/tea-party-md/">tea_party.md</a>
-        </li>
-      
-        <li>
-          <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
         </li>
       
     </ul>

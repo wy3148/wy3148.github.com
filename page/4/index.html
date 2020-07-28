@@ -74,6 +74,74 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-2017-08-02-zookeeper-play1" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/02/2017-08-02-zookeeper-play1/">zookeeper-basic testing with Go client</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/02/2017-08-02-zookeeper-play1/" class="article-date"><time datetime="2017-08-02T11:00:00.000Z" itemprop="datePublished">2017-08-02</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/zookeeper/">zookeeper</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>testing env:<br>ubuntu 16 LTS<br>we just test stand-alone mode of zookeeper, in productin environment, at least 3 zookeepers are recommended.</p>
+<h2 id="steps"><a href="#steps" class="headerlink" title="steps"></a>steps</h2><p>install java<br>to make it simple, I just installed everything about java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install default-jre</span><br><span class="line">sudo apt-get install default-jdk</span><br></pre></td></tr></table></figure>
+<p>install zookeeper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install zookeeper zookeeperd</span><br></pre></td></tr></table></figure></p>
+<p>start the server:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo service zookeeper start</span><br></pre></td></tr></table></figure></p>
+<p>we can also download the zookeeper tar from the official website<br><a href="http://apache.org/dist/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz" target="_blank" rel="noopener">http://apache.org/dist/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz</a></p>
+<p>once download the tar file, directly run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tar zxvf zookeeper-3.4.9.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>The good thing is we can directly use ‘sh’ script in the sub ‘bin’ directory<br>./bin/zkCli.sh can be used to connect local zookeeper running server</p>
+<h2 id="zookeeper-quick-start-and-reference"><a href="#zookeeper-quick-start-and-reference" class="headerlink" title="zookeeper quick start and reference"></a>zookeeper quick start and reference</h2><pre><code>the official &apos;wiki&apos; provides a lot of useful information to help start with zookeeper,
+but following link is more simple to start with,
+https://www.tutorialspoint.com/zookeeper/index.htm
+</code></pre><h2 id="golang-zookeeper-client-testing"><a href="#golang-zookeeper-client-testing" class="headerlink" title="golang zookeeper client testing"></a>golang zookeeper client testing</h2><p>go-zookeeper is the opensource zookeeper client written in go, it has supported basic operations in zookeeper<br><a href="https://github.com/wy3148/go-zookeeper.git" target="_blank" rel="noopener">https://github.com/wy3148/go-zookeeper.git</a></p>
+<p>git clone <a href="https://github.com/wy3148/go-zookeeper.git" target="_blank" rel="noopener">https://github.com/wy3148/go-zookeeper.git</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;time&quot;</span><br><span class="line"></span><br><span class="line">    &quot;github.com/samuel/go-zookeeper/zk&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">    c, _, err := zk.Connect([]string&#123;&quot;192.168.0.22&quot;&#125;, time.Second) //*10)</span><br><span class="line">    if err != nil &#123;</span><br><span class="line">        panic(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    children, _, err := c.Children(&quot;/&quot;)</span><br><span class="line"></span><br><span class="line">    if err != nil &#123;</span><br><span class="line">        panic(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Println(&quot;all sub znodes are:&quot;, children)</span><br><span class="line"></span><br><span class="line">    //always set a new watch to znode</span><br><span class="line">    for &#123;</span><br><span class="line">        children, stat, ch, err := c.GetW(&quot;/zookeeper&quot;)</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">            panic(err)</span><br><span class="line">        &#125;</span><br><span class="line">        fmt.Printf(&quot;%+v %+v\n&quot;, string(children), stat)</span><br><span class="line">        e := &lt;-ch</span><br><span class="line">        fmt.Printf(&quot;%+v\n&quot;, e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/08/02/2017-08-02-zookeeper-play1/" data-id="ckd60ga3z00010liimnjh6ccv" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-2017-07-31-welcome-to-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -115,7 +183,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/07/31/2017-07-31-welcome-to-jekyll/" data-id="ckd5uh9450000hgiiddc3957w" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/07/31/2017-07-31-welcome-to-jekyll/" data-id="ckd60ga3o00000lii623nkgcf" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -158,7 +226,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -167,6 +235,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/07/28/java-arraylist-linkedlist/">ArrayList vs LinkedList &lt; Element&gt; in Java</a>
+        </li>
       
         <li>
           <a href="/2020/07/28/java-jdbc-mysql/">simple jdbc example to connect mysql</a>
@@ -182,10 +254,6 @@
       
         <li>
           <a href="/2020/05/19/tea-party-md/">tea_party.md</a>
-        </li>
-      
-        <li>
-          <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
         </li>
       
     </ul>

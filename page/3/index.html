@@ -74,6 +74,66 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-leetcode-binary-tree-bfs-avarage-value" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/25/leetcode-binary-tree-bfs-avarage-value/">Average of Levels in Binary Tree</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" class="article-date"><time datetime="2017-08-25T04:50:50.000Z" itemprop="datePublished">2017-08-25</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line">Input:</span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">Output: [3, 14.5, 11]</span><br></pre></td></tr></table></figure>
+<p>Explanation:<br>The average value of nodes on level 0 is 3,  on level 1 is 14.5,<br>and on level 2 is 11. Hence return [3, 14.5, 11].<br>Note:<br>The range of node’s value is in the range of 32-bit signed integer.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Double&gt; <span class="title">averageOfLevels</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        List&lt;Double&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Queue&lt;TreeNode&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> result;</span><br><span class="line">        q.add(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> n = q.size(); <span class="comment">// this is number of nodes in current level</span></span><br><span class="line">            <span class="keyword">double</span> sum = <span class="number">0.0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                TreeNode node = q.poll();</span><br><span class="line">                sum += node.val;</span><br><span class="line">                <span class="keyword">if</span>(node.left != <span class="keyword">null</span>) q.offer(node.left);</span><br><span class="line">                <span class="keyword">if</span>(node.right != <span class="keyword">null</span>) q.offer(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(sum / n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ckd60ga75001s0liiwgjsn2xm" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-leetcode-Reshape-the-Matrix" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -123,7 +183,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ckd5uh95d001nhgiifvdw2lkq" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ckd60ga6w001m0liin1z8wwlu" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -183,7 +243,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ckd5uh94g0005hgiiorlrsd07" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ckd60ga4b00040liikcpoy91g" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -243,7 +303,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ckd5uh95c001khgii8gw2ifub" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ckd60ga6t001i0liifbkrqb70" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -304,7 +364,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ckd5uh95f001shgii0idnkmu9" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ckd60ga6y001p0liia8945f1k" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -371,7 +431,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ckd5uh9550013hgiixf3t0l3q" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ckd60ga6b00160liil85sygoy" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -434,7 +494,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ckd5uh95b001fhgii4pm7kfn7" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ckd60ga6o001f0liid5ovi0a7" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -493,7 +553,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ckd5uh95a001ehgii0mfpakyg" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ckd60ga6i001c0lii59ln6dcz" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -552,7 +612,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ckd5uh9560018hgiicae5c41x" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ckd60ga6f001a0liijj2p1vzq" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -616,75 +676,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ckd5uh94f0004hgiiqpueelx3" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2017-08-02-zookeeper-play1" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/02/2017-08-02-zookeeper-play1/">zookeeper-basic testing with Go client</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/08/02/2017-08-02-zookeeper-play1/" class="article-date"><time datetime="2017-08-02T11:00:00.000Z" itemprop="datePublished">2017-08-02</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/zookeeper/">zookeeper</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>testing env:<br>ubuntu 16 LTS<br>we just test stand-alone mode of zookeeper, in productin environment, at least 3 zookeepers are recommended.</p>
-<h2 id="steps"><a href="#steps" class="headerlink" title="steps"></a>steps</h2><p>install java<br>to make it simple, I just installed everything about java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install default-jre</span><br><span class="line">sudo apt-get install default-jdk</span><br></pre></td></tr></table></figure>
-<p>install zookeeper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install zookeeper zookeeperd</span><br></pre></td></tr></table></figure></p>
-<p>start the server:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo service zookeeper start</span><br></pre></td></tr></table></figure></p>
-<p>we can also download the zookeeper tar from the official website<br><a href="http://apache.org/dist/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz" target="_blank" rel="noopener">http://apache.org/dist/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz</a></p>
-<p>once download the tar file, directly run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">tar zxvf zookeeper-3.4.9.tar.gz</span><br></pre></td></tr></table></figure></p>
-<p>The good thing is we can directly use ‘sh’ script in the sub ‘bin’ directory<br>./bin/zkCli.sh can be used to connect local zookeeper running server</p>
-<h2 id="zookeeper-quick-start-and-reference"><a href="#zookeeper-quick-start-and-reference" class="headerlink" title="zookeeper quick start and reference"></a>zookeeper quick start and reference</h2><pre><code>the official &apos;wiki&apos; provides a lot of useful information to help start with zookeeper,
-but following link is more simple to start with,
-https://www.tutorialspoint.com/zookeeper/index.htm
-</code></pre><h2 id="golang-zookeeper-client-testing"><a href="#golang-zookeeper-client-testing" class="headerlink" title="golang zookeeper client testing"></a>golang zookeeper client testing</h2><p>go-zookeeper is the opensource zookeeper client written in go, it has supported basic operations in zookeeper<br><a href="https://github.com/wy3148/go-zookeeper.git" target="_blank" rel="noopener">https://github.com/wy3148/go-zookeeper.git</a></p>
-<p>git clone <a href="https://github.com/wy3148/go-zookeeper.git" target="_blank" rel="noopener">https://github.com/wy3148/go-zookeeper.git</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;time&quot;</span><br><span class="line"></span><br><span class="line">    &quot;github.com/samuel/go-zookeeper/zk&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">    c, _, err := zk.Connect([]string&#123;&quot;192.168.0.22&quot;&#125;, time.Second) //*10)</span><br><span class="line">    if err != nil &#123;</span><br><span class="line">        panic(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    children, _, err := c.Children(&quot;/&quot;)</span><br><span class="line"></span><br><span class="line">    if err != nil &#123;</span><br><span class="line">        panic(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Println(&quot;all sub znodes are:&quot;, children)</span><br><span class="line"></span><br><span class="line">    //always set a new watch to znode</span><br><span class="line">    for &#123;</span><br><span class="line">        children, stat, ch, err := c.GetW(&quot;/zookeeper&quot;)</span><br><span class="line">        if err != nil &#123;</span><br><span class="line">            panic(err)</span><br><span class="line">        &#125;</span><br><span class="line">        fmt.Printf(&quot;%+v %+v\n&quot;, string(children), stat)</span><br><span class="line">        e := &lt;-ch</span><br><span class="line">        fmt.Printf(&quot;%+v\n&quot;, e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/02/2017-08-02-zookeeper-play1/" data-id="ckd5uh94b0002hgiixuvmwh1x" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ckd60ga4700030liiequf50mn" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -727,7 +719,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -736,6 +728,10 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/07/28/java-arraylist-linkedlist/">ArrayList vs LinkedList &lt; Element&gt; in Java</a>
+        </li>
       
         <li>
           <a href="/2020/07/28/java-jdbc-mysql/">simple jdbc example to connect mysql</a>
@@ -751,10 +747,6 @@ https://www.tutorialspoint.com/zookeeper/index.htm
       
         <li>
           <a href="/2020/05/19/tea-party-md/">tea_party.md</a>
-        </li>
-      
-        <li>
-          <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
         </li>
       
     </ul>
