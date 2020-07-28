@@ -74,6 +74,69 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-golang-map-internal" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/10/golang-map-internal/">the map internal of Golang</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2019/02/10/golang-map-internal/" class="article-date"><time datetime="2019-02-09T13:30:47.000Z" itemprop="datePublished">2019-02-10</time></a>
+</div>
+
+    
+    
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>golang map is implemented in hashmap.<br>a hashmap is combined with a hash table array and each array node is a linked list.</p>
+<p>unlike C++, golang is using a fixed size of array to replace linked list, and if there<br>are conflicts of new key-value pairs, golang will put the key-value pairs into a<br>‘extra’ bucket.</p>
+<p>the bucket is defined,</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A bucket for a Go map.</span></span><br><span class="line">type bmap <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="comment">// tophash generally contains the top byte of the hash value</span></span><br><span class="line">	<span class="comment">// for each key in this bucket. If tophash[0] &lt; minTopHash,</span></span><br><span class="line">	<span class="comment">// tophash[0] is a bucket evacuation state instead.</span></span><br><span class="line">	tophash [bucketCnt]uint8</span><br><span class="line">	<span class="comment">// Followed by bucketCnt keys and then bucketCnt values.</span></span><br><span class="line">	<span class="comment">// <span class="doctag">NOTE:</span> packing all the keys together and then all the values together makes the</span></span><br><span class="line">	<span class="comment">// code a bit more complicated than alternating key/value/key/value/... but it allows</span></span><br><span class="line">	<span class="comment">// us to eliminate padding which would be needed for, e.g., map[int64]int8.</span></span><br><span class="line">	<span class="comment">// Followed by an overflow pointer.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>the map is defined as ‘hmap’,</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A header for a Go map.</span></span><br><span class="line">type hmap <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="comment">// Note: the format of the hmap is also encoded in cmd/compile/internal/gc/reflect.go.</span></span><br><span class="line">	<span class="comment">// Make sure this stays in sync with the compiler's definition.</span></span><br><span class="line">	count     <span class="keyword">int</span> <span class="comment">// # live cells == size of map.  Must be first (used by len() builtin)</span></span><br><span class="line">	flags     uint8</span><br><span class="line">	B         uint8  <span class="comment">// log_2 of # of buckets (can hold up to loadFactor * 2^B items)</span></span><br><span class="line">	noverflow uint16 <span class="comment">// approximate number of overflow buckets; see incrnoverflow for details</span></span><br><span class="line">	hash0     uint32 <span class="comment">// hash seed</span></span><br><span class="line"></span><br><span class="line">	buckets    unsafe.Pointer <span class="comment">// array of 2^B Buckets. may be nil if count==0.</span></span><br><span class="line">	oldbuckets unsafe.Pointer <span class="comment">// previous bucket array of half the size, non-nil only when growing</span></span><br><span class="line">	nevacuate  uintptr        <span class="comment">// progress counter for evacuation (buckets less than this have been evacuated)</span></span><br><span class="line"></span><br><span class="line">	extra *mapextra <span class="comment">// optional fields</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>when to access the element,(remove unrelated code)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">func mapaccess1(t *maptype, h *hmap, key unsafe.Pointer) unsafe.Pointer</span><br><span class="line"></span><br><span class="line">    //hash function to calculate the index of the bucket,</span><br><span class="line"></span><br><span class="line">	hash := alg.hash(key, uintptr(h.hash0)) </span><br><span class="line">	m := bucketMask(h.B)</span><br><span class="line"></span><br><span class="line">    bucketloop:</span><br><span class="line"></span><br><span class="line">    //find the element from current bucket,</span><br><span class="line">	for ; b != nil; b = b.overflow(t) &#123;</span><br><span class="line">		for i := uintptr(0); i &lt; bucketCnt; i++ &#123;</span><br><span class="line">			if b.tophash[i] != top &#123;</span><br><span class="line">				if b.tophash[i] == emptyRest &#123;</span><br><span class="line">					break bucketloop</span><br><span class="line">				&#125;</span><br><span class="line">				continue</span><br><span class="line">			&#125;</span><br><span class="line">			k := add(unsafe.Pointer(b), dataOffset+i*uintptr(t.keysize))</span><br><span class="line">			if t.indirectkey() &#123;</span><br><span class="line">				k = *((*unsafe.Pointer)(k))</span><br><span class="line">			&#125;</span><br><span class="line">			if alg.equal(key, k) &#123;</span><br><span class="line">				v := add(unsafe.Pointer(b), dataOffset+bucketCnt*uintptr(t.keysize)+i*uintptr(t.valuesize))</span><br><span class="line">				if t.indirectvalue() &#123;</span><br><span class="line">					v = *((*unsafe.Pointer)(v))</span><br><span class="line">				&#125;</span><br><span class="line">				return v</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>from the source code, we can understand why map is not safe.<br>And new version of golang has added new sync map.<br><a href="https://golang.org/pkg/sync/#Map" target="_blank" rel="noopener">https://golang.org/pkg/sync/#Map</a></p>
+<p>Additonally,<br>map is passed by the address,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func makemap(t *maptype, hint int, h *hmap) *hmap</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">func f1(m map[string]string) &#123;</span><br><span class="line">	m[&quot;name&quot;] = &quot;bingo&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func f0() &#123;</span><br><span class="line">	m := make(map[string]string)</span><br><span class="line">	m[&quot;name&quot;] = &quot;John&quot;</span><br><span class="line">	f1(m)</span><br><span class="line">	fmt.Println(m[&quot;name&quot;])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>above code will change the value of map element, this is different with slice.</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2019/02/10/golang-map-internal/" data-id="ckd5uh94n000ghgii2ph63m3j" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/">Golang</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-lua-string-match" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -113,7 +176,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ckd4kwcez0022eaiizfoz1knh" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2019/01/18/lua-string-match/" data-id="ckd5uh95o0026hgii2yiefy4v" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -179,7 +242,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ckd4kwcer001teaiipf5jk588" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/13/lua-date-time/" data-id="ckd5uh95m0022hgiiwma52m7w" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -242,7 +305,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ckd4kwcdx0009eaiivqudkv4c" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/11/awd-s3-go-sdk/" data-id="ckd5uh94h0006hgii5qb6uo5b" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -350,7 +413,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ckd4kwce8000teaiib1cxqswm" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/05/http-performance-testing/" data-id="ckd5uh950000vhgii5nq65648" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -410,7 +473,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ckd4kwcdy000ceaii0beijnwb" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ckd5uh94j0009hgii5k0zyzqo" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -474,7 +537,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ckd4kwce0000feaiix5qmaauv" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/04/golang-return-channel-in-func/" data-id="ckd5uh94r000jhgiizxbnms6z" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -535,7 +598,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ckd4kwce4000keaiiybb5dvst" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/09/01/golang-sync-Map/" data-id="ckd5uh94u000lhgiio0mxtn2d" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -594,7 +657,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ckd4kwceo001qeaiicbldj4yh" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ckd5uh95l001zhgiik30xppfw" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -654,72 +717,7 @@ And keepalive (which is default) can be disabled using:
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ckd4kwcen001oeaiik15zzv02" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-leetcode-Reshape-the-Matrix" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/25/leetcode-Reshape-the-Matrix/">leetcode-Reshape-the-Matrix</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/08/25/leetcode-Reshape-the-Matrix/" class="article-date"><time datetime="2017-08-25T02:05:42.000Z" itemprop="datePublished">2017-08-25</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>In MATLAB, there is a very useful function called ‘reshape’, which can reshape a matrix into a new one with different size but keep its original data.</p>
-<p>You’re given a matrix represented by a two-dimensional array, and two positive integers r and c representing the row number and column number of the wanted reshaped matrix, respectively.</p>
-<p>The reshaped matrix need to be filled with all the elements of the original matrix in the same row-traversing order as they were.</p>
-<p>If the ‘reshape’ operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, output the original matrix.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line">Input: </span><br><span class="line">nums = </span><br><span class="line">[[1,2],</span><br><span class="line"> [3,4]]</span><br><span class="line">r = 1, c = 4</span><br><span class="line">Output: </span><br><span class="line">[[1,2,3,4]]</span><br><span class="line">Explanation:</span><br><span class="line">The row-traversing of nums is [1,2,3,4]. The new reshaped matrix is a 1 * 4 matrix, fill it row by row by using the previous list.</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Example 2:</span><br><span class="line">Input: </span><br><span class="line">nums = </span><br><span class="line">[[1,2],</span><br><span class="line"> [3,4]]</span><br><span class="line">r = 2, c = 4</span><br><span class="line">Output: </span><br><span class="line">[[1,2],</span><br><span class="line"> [3,4]]</span><br><span class="line">Explanation:</span><br><span class="line">There is no way to reshape a 2 * 2 matrix to a 2 * 4 matrix. So output the original matrix.</span><br></pre></td></tr></table></figure>
-<p>Note:<br>The height and width of the given matrix is in range [1, 100].<br>The given r and c are all positive.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[][] matrixReshape(<span class="keyword">int</span>[][] nums, <span class="keyword">int</span> r, <span class="keyword">int</span> c) &#123;</span><br><span class="line">    		<span class="keyword">if</span> (nums == <span class="keyword">null</span> || r*c &lt;= <span class="number">0</span>) <span class="keyword">return</span> nums;</span><br><span class="line">    		</span><br><span class="line">    		<span class="keyword">int</span> size = nums.length * nums[<span class="number">0</span>].length;</span><br><span class="line">    		</span><br><span class="line">    		<span class="keyword">if</span> (r * c != size) &#123;</span><br><span class="line">    			<span class="keyword">return</span> nums;</span><br><span class="line">    		&#125;</span><br><span class="line">    	</span><br><span class="line">    		<span class="keyword">int</span>[] tmp = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line">    		</span><br><span class="line">    		<span class="keyword">int</span> i, j;</span><br><span class="line">    		<span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">    		</span><br><span class="line">    		<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">    			<span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; nums[i].length;j++) &#123;</span><br><span class="line">    				tmp[pos] = nums[i][j];</span><br><span class="line">    				pos++;</span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125;</span><br><span class="line">    		</span><br><span class="line">    		<span class="keyword">int</span>[][] res = <span class="keyword">new</span> <span class="keyword">int</span>[r][c];</span><br><span class="line">    		pos = <span class="number">0</span>;</span><br><span class="line">    		</span><br><span class="line">    		<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; r; i++) &#123;</span><br><span class="line">    			</span><br><span class="line">    			<span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; c; j++) &#123;</span><br><span class="line">    				res[i][j] = tmp[pos];</span><br><span class="line">    				pos++;</span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125;</span><br><span class="line">    		</span><br><span class="line">    		<span class="keyword">return</span> res;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>the new rom index and column index has following relationship, so there is optimised<br>way</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] matrixReshape(<span class="keyword">int</span>[][] nums, <span class="keyword">int</span> r, <span class="keyword">int</span> c) &#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length, m = nums[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">if</span> (r*c != n*m) <span class="keyword">return</span> nums;</span><br><span class="line">    <span class="keyword">int</span>[][] res = <span class="keyword">new</span> <span class="keyword">int</span>[r][c];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;r*c;i++) </span><br><span class="line">        res[i/c][i%c] = nums[i/m][i%m];</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ckd4kwcek001heaii9yqyopvg" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ckd5uh95j001vhgiiz841aa89" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -738,7 +736,7 @@ And keepalive (which is default) can be disabled using:
 
 
   <div id="page-nav">
-    <nav><ul class="pagination"><li><a class="page-prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i> Prev</a></li><li><a class="page-number" href="/">1</a></li><li class="active"><span class="page-number">2</span></li><li><a class="page-number" href="/page/3/">3</a></li><li><a class="page-next" rel="next" href="/page/3/">Next <i class="fa fa-chevron-right"></i></a></li></ul></nav>
+    <nav><ul class="pagination"><li><a class="page-prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i> Prev</a></li><li><a class="page-number" href="/">1</a></li><li class="active"><span class="page-number">2</span></li><li><a class="page-number" href="/page/3/">3</a></li><li><a class="page-number" href="/page/4/">4</a></li><li><a class="page-next" rel="next" href="/page/3/">Next <i class="fa fa-chevron-right"></i></a></li></ul></nav>
   </div>
 
 
@@ -756,7 +754,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java/">java</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java/">java</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -764,7 +762,7 @@ And keepalive (which is default) can be disabled using:
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -773,6 +771,10 @@ And keepalive (which is default) can be disabled using:
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/07/28/java-jdbc-mysql/">simple jdbc example to connect mysql</a>
+        </li>
       
         <li>
           <a href="/2020/07/27/java-simple-redis/">java_simple_redis</a>
@@ -788,10 +790,6 @@ And keepalive (which is default) can be disabled using:
       
         <li>
           <a href="/2020/04/20/binary-search-all/">binary search algorithm--different ways in coding</a>
-        </li>
-      
-        <li>
-          <a href="/2019/11/22/elastic-notes-1/">elasticsearch notes-1</a>
         </li>
       
     </ul>

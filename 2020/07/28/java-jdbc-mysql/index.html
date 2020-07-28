@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Archives: 2019/2 | Ye&#39;s Tech Blog</title>
+  <title>simple jdbc example to connect mysql | Ye&#39;s Tech Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ye&#39;s Tech Blog">
-<meta property="og:url" content="https://wy3148.github.io/archives/2019/02/index.html">
+  <meta name="description" content="java maven for jdbc12345    &amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;  &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;  &amp;lt;version&amp;gt;8.0.21&amp;lt;/version&amp;gt;&amp;lt;/dependency&amp;gt">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="simple jdbc example to connect mysql">
+<meta property="og:url" content="https://wy3148.github.io/2020/07/28/java-jdbc-mysql/index.html">
 <meta property="og:site_name" content="Ye&#39;s Tech Blog">
+<meta property="og:description" content="java maven for jdbc12345    &amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;  &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;  &amp;lt;version&amp;gt;8.0.21&amp;lt;/version&amp;gt;&amp;lt;/dependency&amp;gt">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-07-28T11:15:38.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ye&#39;s Tech Blog">
+<meta name="twitter:title" content="simple jdbc example to connect mysql">
+<meta name="twitter:description" content="java maven for jdbc12345    &amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;  &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;  &amp;lt;version&amp;gt;8.0.21&amp;lt;/version&amp;gt;&amp;lt;/dependency&amp;gt">
   
     <link rel="alternate" href="/atom.xml" title="Ye&#39;s Tech Blog" type="application/atom+xml">
   
@@ -49,7 +54,7 @@
         
           <li><a class="" href="/index.html">Home</a></li>
         
-          <li><a class="active" href="/archives/">Archives</a></li>
+          <li><a class="" href="/archives/">Archives</a></li>
         
       </ul>
 
@@ -72,40 +77,75 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <header class="archive-article-header">
+          <article id="post-java-jdbc-mysql" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
     
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/10/golang-map-internal/">the map internal of Golang</a>
+    <h1 class="article-title" itemprop="name">
+      simple jdbc example to connect mysql
     </h1>
   
 
 
+  </header>
+
+  <div class="article-meta">
     <div class="article-datetime">
-  <a href="/2019/02/10/golang-map-internal/" class="archive-article-date"><time datetime="2019-02-09T13:30:47.000Z" itemprop="datePublished">February 10th</time></a>
+  <a href="/2020/07/28/java-jdbc-mysql/" class="article-date"><time datetime="2020-07-28T11:10:34.000Z" itemprop="datePublished">2020-07-28</time></a>
 </div>
 
-  </header>
-</article>
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java-maven-for-jdbc"><a href="#java-maven-for-jdbc" class="headerlink" title="java maven for jdbc"></a>java maven for jdbc</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    &lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;8.0.21&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Connection conn = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    conn = DriverManager.getConnection(<span class="string">"jdbc:mysql://localhost/hearing?"</span> +</span><br><span class="line">                    <span class="string">"user=root&amp;password=pass1234&amp;serverTimezone=UTC"</span>);</span><br><span class="line"></span><br><span class="line">    String user =<span class="string">"test@gmail.com"</span>;</span><br><span class="line">    PreparedStatement st = conn.prepareStatement(<span class="string">"SELECT * FROM Customer WHERE Email = ?"</span>);</span><br><span class="line">    st.setString(<span class="number">1</span>,user);</span><br><span class="line">    ResultSet ret = st.executeQuery();</span><br><span class="line">    <span class="keyword">while</span>(ret.next()) &#123;</span><br><span class="line">    	<span class="comment">//here we can get the column by name</span></span><br><span class="line">        System.out.println(ret.getString(<span class="string">"FirstName"</span>));</span><br><span class="line">        System.out.println(ret.getString(<span class="string">"Created"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (SQLException ex) &#123;</span><br><span class="line">    <span class="comment">// handle any errors</span></span><br><span class="line">    System.out.println(<span class="string">"SQLException: "</span> + ex.getMessage());</span><br><span class="line">    System.out.println(<span class="string">"SQLState: "</span> + ex.getSQLState());</span><br><span class="line">    System.out.println(<span class="string">"VendorError: "</span> + ex.getErrorCode());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2020/07/28/java-jdbc-mysql/" data-id="ckd5uh94z000shgiin6y2o3j5" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2020/07/27/java-simple-redis/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">java_simple_redis</span>
+    </a>
+  </li>
+  
+  
+</ul>
+
 
   
-  
-    </div></section>
-  
+</article>
 
 
 
