@@ -74,6 +74,68 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-2017-08-05-ubuntu-macos" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/2017-08-05-ubuntu-macos/">add the shared folder for virtual ubuntu 16.04 LTS</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/05/2017-08-05-ubuntu-macos/" class="article-date"><time datetime="2017-08-05T11:00:00.000Z" itemprop="datePublished">2017-08-05</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="env"><a href="#env" class="headerlink" title="env"></a>env</h2><p>host: mac os<br>virtual box<br>virtual linux: ubuntu 16.04 LTS</p>
+<p>share the folder to the virtual machine, ubuntu 16.04 LTS</p>
+<h2 id="steps"><a href="#steps" class="headerlink" title="steps"></a>steps</h2><p>on virtual box, click ‘settings’-&gt;’shared folder’<br>MUST select ‘/Users/Shared’ as the shared folder on mac host</p>
+<p><img src="/images/vm_shared_folder.png" alt="vm folder screenshot"></p>
+<p>on ubuntu 16.04 LTS, must install the virtual box driver</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install virtualbox-guest-dkms</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo mount -t vboxsf -o uid=$UID,gid=$(id -g) Shared /mnt/</span><br></pre></td></tr></table></figure>
+<p>the shared folder is mounted ‘/mnt’ folder</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ckdrcj31d0006dvii3nzmw9m9" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-2017-08-02-zookeeper-play1" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -128,7 +190,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/02/2017-08-02-zookeeper-play1/" data-id="ckd60s6lk0001apii8g1lxg0t" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/02/2017-08-02-zookeeper-play1/" data-id="ckdrcj3150001dvii9yqlap21" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -183,7 +245,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/07/31/2017-07-31-welcome-to-jekyll/" data-id="ckd60s6le0000apii2i53rlmc" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/07/31/2017-07-31-welcome-to-jekyll/" data-id="ckdrcj30x0000dviiqhe9gr3i" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -226,7 +288,7 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/08/">August 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -235,6 +297,10 @@ https://www.tutorialspoint.com/zookeeper/index.htm
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/08/12/java-redis-lettuce/">using lettuce redis on java</a>
+        </li>
       
         <li>
           <a href="/2020/07/28/java-arraylist-linkedlist/">ArrayList vs LinkedList &lt; Element&gt; in Java</a>
@@ -250,10 +316,6 @@ https://www.tutorialspoint.com/zookeeper/index.htm
       
         <li>
           <a href="/2020/07/27/java-begin-maven/">java use maven</a>
-        </li>
-      
-        <li>
-          <a href="/2020/05/19/tea-party-md/">tea_party.md</a>
         </li>
       
     </ul>

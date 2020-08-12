@@ -74,6 +74,65 @@
         <div class="col-sm-8 blog-main">
           
   
+    <article id="post-leetcode-binary-tree-max-depth" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/25/leetcode-binary-tree-max-depth/">leetcode-binary-tree-max-depth</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2017/08/25/leetcode-binary-tree-max-depth/" class="article-date"><time datetime="2017-08-25T12:14:54.000Z" itemprop="datePublished">2017-08-25</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a binary tree, find its maximum depth.</p>
+<p>The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> left = <span class="keyword">this</span>.maxDepth(root.left);</span><br><span class="line">        <span class="keyword">int</span> right = <span class="keyword">this</span>.maxDepth(root.right);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(left &gt; right)&#123;</span><br><span class="line">            <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> right+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-max-depth/" data-id="ckdrcj32l0022dvii7nxegl2w" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-leetcode-binary-tree-bfs-avarage-value" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <header class="article-header">
@@ -118,7 +177,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ckd60s6n3001qapiis102nb8l" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-binary-tree-bfs-avarage-value/" data-id="ckdrcj32h001sdviizd1lqtdy" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -183,7 +242,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ckd60s6n0001japiidet5oxzm" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/25/leetcode-Reshape-the-Matrix/" data-id="ckdrcj32k001zdvii91f1odf1" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -243,7 +302,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ckd60s6lq0005apiicqu6030o" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/Candies/" data-id="ckdrcj31b0004dvii6k9dy5j1" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -303,7 +362,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ckd60s6mz001gapii27sdahz9" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/24/leetcode-Number-Complement/" data-id="ckdrcj32a001bdvii9okto742" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -364,7 +423,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ckd60s6n1001mapiigh32k07r" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Reverse-Words-in-a-String-III/" data-id="ckdrcj32j001wdvii1hcpp2f4" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -431,7 +490,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ckd60s6mo0016apiibqkroai0" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Array-Partition-I/" data-id="ckdrcj3270013dviinjtg5vhd" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -494,7 +553,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ckd60s6mt001dapiiev0qh1h5" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Merge-Two-Binary-Trees/" data-id="ckdrcj32e001kdviibhcj883q" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -553,7 +612,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ckd60s6n6001xapii3o1nvth3" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/23/leetcode-Judge-Route-Circle/" data-id="ckdrcj32g001odvii5f8gccps" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -612,75 +671,13 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ckd60s6ms001bapiibyh4c54z" class="article-share-link">
+      <a data-url="https://wy3148.github.io/2017/08/22/leetcode-Hamming-Distance/" data-id="ckdrcj32d001hdviiu3dbthb2" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2017-08-05-ubuntu-macos" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/2017-08-05-ubuntu-macos/">add the shared folder for virtual ubuntu 16.04 LTS</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/08/05/2017-08-05-ubuntu-macos/" class="article-date"><time datetime="2017-08-05T11:00:00.000Z" itemprop="datePublished">2017-08-05</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="env"><a href="#env" class="headerlink" title="env"></a>env</h2><p>host: mac os<br>virtual box<br>virtual linux: ubuntu 16.04 LTS</p>
-<p>share the folder to the virtual machine, ubuntu 16.04 LTS</p>
-<h2 id="steps"><a href="#steps" class="headerlink" title="steps"></a>steps</h2><p>on virtual box, click ‘settings’-&gt;’shared folder’<br>MUST select ‘/Users/Shared’ as the shared folder on mac host</p>
-<p><img src="/images/vm_shared_folder.png" alt="vm folder screenshot"></p>
-<p>on ubuntu 16.04 LTS, must install the virtual box driver</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install virtualbox-guest-dkms</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo mount -t vboxsf -o uid=$UID,gid=$(id -g) Shared /mnt/</span><br></pre></td></tr></table></figure>
-<p>the shared folder is mounted ‘/mnt’ folder</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/08/05/2017-08-05-ubuntu-macos/" data-id="ckd60s6ln0003apiiwedphi8c" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
 
     </footer>
   </div>
@@ -719,7 +716,7 @@
   
   <div class="sidebar-module">
     <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/08/">August 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
@@ -728,6 +725,10 @@
   <div class="sidebar-module">
     <h4>Recents</h4>
     <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2020/08/12/java-redis-lettuce/">using lettuce redis on java</a>
+        </li>
       
         <li>
           <a href="/2020/07/28/java-arraylist-linkedlist/">ArrayList vs LinkedList &lt; Element&gt; in Java</a>
@@ -743,10 +744,6 @@
       
         <li>
           <a href="/2020/07/27/java-begin-maven/">java use maven</a>
-        </li>
-      
-        <li>
-          <a href="/2020/05/19/tea-party-md/">tea_party.md</a>
         </li>
       
     </ul>
