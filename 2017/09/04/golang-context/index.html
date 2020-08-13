@@ -1,109 +1,200 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
+<!-- Head tag -->
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
-  <title>golang-context examples | Ye&#39;s Study Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#context with cancelparent go routine cancel the child goroutine,when parent routine stops to consume more messages, it call context.Cancel() functionto signal the child routine 1234567891011121314151">
-<meta name="keywords" content="golang">
-<meta property="og:type" content="article">
-<meta property="og:title" content="golang-context examples">
-<meta property="og:url" content="https://wy3148.github.io/2017/09/04/golang-context/index.html">
-<meta property="og:site_name" content="Ye&#39;s Study Blog">
-<meta property="og:description" content="#context with cancelparent go routine cancel the child goroutine,when parent routine stops to consume more messages, it call context.Cancel() functionto signal the child routine 1234567891011121314151">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-17T23:43:22.935Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="golang-context examples">
-<meta name="twitter:description" content="#context with cancelparent go routine cancel the child goroutine,when parent routine stops to consume more messages, it call context.Cancel() functionto signal the child routine 1234567891011121314151">
-  
-    <link rel="alternate" href="/atom.xml" title="Ye&#39;s Study Blog" type="application/atom+xml">
-  
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <!--Description-->
+    
+        <meta name="description" content="#context with cancelparent go routine cancel the child goroutine,when parent routine stops to consume more messages, it call context.Cancel() function">
+    
 
-  <link rel="stylesheet" href="/css/styles.css">
-  
+    <!--Author-->
+    
+        <meta name="author" content="YE WANG">
+    
 
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="golang-context examples">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Ye&#39;s Study Blog">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>golang-context examples - Ye&#39;s Study Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+	
 </head>
-</html>
+
+
 <body>
-  <nav class="navbar navbar-inverse">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ye's blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wy3148">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="main-menu-navbar">
-      <ul class="nav navbar-nav">
-        
-          <li><a class="" href="/index.html">Home</a></li>
-        
-          <li><a class="" href="/archives/">Archives</a></li>
-        
-      </ul>
-
-      <!--
-      <ul class="nav navbar-nav navbar-right">
-        
-          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
-        
-      </ul>
-      -->
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    <!-- /.container -->
 </nav>
 
-  <div class="container">
-    <div class="blog-header">
-  <h1 class="blog-title">Ye&#39;s Study Blog</h1>
-  
-</div>
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-    <div class="row">
-        <div class="col-sm-8 blog-main">
-          <article id="post-golang-context" class="article article-type-post" itemscope="" itemprop="blogPost">
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>golang-context examples</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-09-04
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
-  <header class="article-header">
-    
-  
-    <h1 class="article-title" itemprop="name">
-      golang-context examples
-    </h1>
-  
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
 
 
-  </header>
+<a href="/tags/golang/">#golang</a>
 
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/09/04/golang-context/" class="article-date"><time datetime="2017-09-04T01:21:54.000Z" itemprop="datePublished">2017-09-04</time></a>
-</div>
 
-    
-    
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
 
-  </div>
-  <div class="article-inner">
+            <!-- Gallery -->
+            
 
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#context with cancel<br>parent go routine cancel the child goroutine,<br>when parent routine stops to consume more messages, it call context.Cancel() function<br>to signal the child routine</p>
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>#context with cancel<br>parent go routine cancel the child goroutine,<br>when parent routine stops to consume more messages, it call context.Cancel() function<br>to signal the child routine</p>
 <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"context"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// gen generates integers in a separate goroutine and</span></span><br><span class="line">	<span class="comment">// sends them to the returned channel.</span></span><br><span class="line">	<span class="comment">// The callers of gen need to cancel the context once</span></span><br><span class="line">	<span class="comment">// they are done consuming generated integers not to leak</span></span><br><span class="line">	<span class="comment">// the internal goroutine started by gen.</span></span><br><span class="line">	gen := <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">		dst := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">		n := <span class="number">1</span></span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">			<span class="keyword">for</span> &#123;</span><br><span class="line">				<span class="keyword">select</span> &#123;</span><br><span class="line">				<span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">					<span class="keyword">return</span> <span class="comment">// returning not to leak the goroutine</span></span><br><span class="line">				<span class="keyword">case</span> dst &lt;- n:</span><br><span class="line">					n++</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;()</span><br><span class="line">		<span class="keyword">return</span> dst</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line">	<span class="keyword">defer</span> cancel() <span class="comment">// cancel when we are finished consuming integers</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> n := <span class="keyword">range</span> gen(ctx) &#123;</span><br><span class="line">		fmt.Println(n)</span><br><span class="line">		<span class="keyword">if</span> n == <span class="number">5</span> &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>#context with value</p>
 <p>we can pass some value from routines to routines, about the ‘key’, it’s not suggested using<br>string data type directly</p>
@@ -112,130 +203,103 @@
 <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"context"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="comment">// "net"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> TracId <span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">moreTime</span><span class="params">(c context.Context)</span> &lt;-<span class="title">chan</span> <span class="title">string</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	res := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">string</span>, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="built_in">close</span>(res)</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> &lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">				fmt.Println(<span class="string">"overslept"</span>)</span><br><span class="line">				res &lt;- <span class="string">"working\n"</span></span><br><span class="line">			<span class="keyword">case</span> &lt;-c.Done():</span><br><span class="line">				fmt.Println(c.Err()) <span class="comment">// prints "context deadline exceeded"</span></span><br><span class="line">				res &lt;- <span class="string">"timeout\n"</span></span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">	ctx, cancel := context.WithTimeout(context.Background(), <span class="number">5</span>*time.Second)</span><br><span class="line">	<span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">	res := moreTime(ctx)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> res &#123;</span><br><span class="line">		w.Write([]<span class="keyword">byte</span>(v))</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	http.HandleFunc(<span class="string">"/foo"</span>, foo)</span><br><span class="line">	http.ListenAndServe(<span class="string">":8081"</span>, <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>when we don’t want to the response forever, we can set a timeout in this way,<br>we need to check the ‘error’ response of client.Do() function<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ctx, cancel := context.WithTimeout(context.Background(), <span class="number">10</span>*time.Second)</span><br><span class="line"><span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">client := <span class="built_in">new</span>(http.Client)</span><br><span class="line">req, _ := http.NewRequest(<span class="string">"GET"</span>, <span class="string">"http://192.168.2.59:8081/foo"</span>, <span class="literal">nil</span>)</span><br><span class="line">copyReq := req.WithContext(ctx)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">	fmt.Println(err)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	b := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>)</span><br><span class="line">	ress.Body.Read(b)</span><br><span class="line">	fmt.Println(<span class="keyword">string</span>(b))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-      
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
     </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://wy3148.github.io/2017/09/04/golang-context/" data-id="ckdrcj31e0008dviimgojy2py" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-    
-<ul id="article-nav" class="nav nav-pills nav-justified">
-  
-  <li role="presentation">
-    <a href="/2017/09/04/golang-return-channel-in-func/" id="article-nav-older" class="article-nav-link-wrap">
-      <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">golang-return channel vs retufn &lt;- channel</span>
-    </a>
-  </li>
-  
-  
-  <li role="presentation">
-    <a href="/2017/09/05/http-performance-testing/" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">benchmark tools for http/https/restAPI testing</span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
-  
-</ul>
-
-
-  
 </article>
 
+    <!-- Footer -->
+    <hr>
 
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                        <li>
+                            <a href="wangye3148" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
 
+                    
 
-        </div>
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          
-  <div class="sidebar-module sidebar-module-inset">
-  <h4>About</h4>
-  <p>welcome to my tech blog</p> <p>https://www.linkedin.com/in/wy3148/</p>
+                    
+                        <li>
+                            <a href="https://github.com/wy3148" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
 
-</div>
+                    
+                        <li>
+                            <a href="https://www.linkedin.com/in/wy3148/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
 
+                    
+                        <li>
+                            <a href="mailto:wangye3148@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
 
-  
-  <div class="sidebar-module">
-    <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/golang/">golang</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/java/">java</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode/">leetcode</a><span class="sidebar-module-list-count">7</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/leetcode-binary-tree/">leetcode binary tree</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/old-posts-in-wordpress-blog/">old posts in wordpress blog</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/ubuntu-LTS/">ubuntu LTS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/zookeeper/">zookeeper</a><span class="sidebar-module-list-count">1</span></li></ul>
-  </div>
-
-
-
-  
-  <div class="sidebar-module">
-    <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/08/">August 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/07/">July 2020</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/05/">May 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2020/04/">April 2020</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/11/">November 2019</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/10/">October 2019</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/02/">February 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2019/01/">January 2019</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/09/">September 2017</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/08/">August 2017</a><span class="sidebar-module-list-count">12</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/07/">July 2017</a><span class="sidebar-module-list-count">1</span></li></ul>
-  </div>
-
-
-
-  
-  <div class="sidebar-module">
-    <h4>Recents</h4>
-    <ul class="sidebar-module-list">
-      
-        <li>
-          <a href="/2020/08/12/java-redis-lettuce/">using lettuce redis on java</a>
-        </li>
-      
-        <li>
-          <a href="/2020/07/28/java-arraylist-linkedlist/">ArrayList vs LinkedList &lt; Element&gt; in Java</a>
-        </li>
-      
-        <li>
-          <a href="/2020/07/28/java-jdbc-mysql/">simple jdbc example to connect mysql</a>
-        </li>
-      
-        <li>
-          <a href="/2020/07/27/java-simple-redis/">java_simple_redis</a>
-        </li>
-      
-        <li>
-          <a href="/2020/07/27/java-begin-maven/">java use maven</a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 YE WANG<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
         </div>
     </div>
-  </div>
-  <footer class="blog-footer">
-  <div class="container">
-    <div id="footer-info" class="inner">
-      &copy; 2020 YE WANG<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
 
-  
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
 
 
-
-<script src="/js/script.js"></script>
 
 </body>
+
 </html>
