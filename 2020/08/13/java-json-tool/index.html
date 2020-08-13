@@ -10,6 +10,10 @@
 
     <!--Description-->
     
+        <meta name="description" content="##Simple json tool
+JSONparser is used to convert string to json object
+parser 1234567891011121314151617181920212223242526Object obj = null;try &amp;#123; ">
+    
 
     <!--Author-->
     
@@ -18,7 +22,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Ye&#39;s Study Blog">
+        <meta property="og:title" content="use simple-json with java on example">
     
 
     <!--Open Graph Description-->
@@ -29,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -40,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>Golang - Ye&#39;s Study Blog</title>
+    <title>use simple-json with java on example - Ye&#39;s Study Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -142,49 +146,68 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>#Golang</h1>
+                <div class="post-heading">
+                    <h1>use simple-json with java on example</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-08-13
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2019/02/10/golang-map-internal/">
-        <h1 class="post-title archive">
-            the map internal of Golang
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-02-10
-    </p>
-</div>
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>##Simple json tool</p>
+<p>JSONparser is used to convert string to json object</p>
+<figure class="highlight plain"><figcaption><span>parser </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Object obj = null;</span><br><span class="line">try &#123;</span><br><span class="line"></span><br><span class="line">    obj = parser.parse(new FileReader(&quot;C:/Users/Envy/Documents/company.json&quot;));</span><br><span class="line"></span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">    // Handle possible exceptions</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// If the parsed string was a single json object</span><br><span class="line">if (obj instanceof JSONObject) &#123;</span><br><span class="line">    JSONObject jsonObject = (JSONObject) obj;</span><br><span class="line"></span><br><span class="line">    // Do something with jsonObject, in this example it prints the content of jsonObject</span><br><span class="line">    System.out.println(jsonObject);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">// Or else if the parsed string was a json array</span><br><span class="line">else if (obj instanceof JSONArray) &#123;</span><br><span class="line">    JSONArray jsonArray = (JSONArray) obj;</span><br><span class="line"></span><br><span class="line">    // Do something with jsonArray, in this example it prints the content of jsonArray</span><br><span class="line">    System.out.println(jsonArray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>convert the JASONObject to string </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">JSONObject obj = <span class="keyword">new</span> JSONObject();</span><br><span class="line">obj.put(<span class="string">"name"</span>,<span class="string">"foo"</span>);</span><br><span class="line">obj.put(<span class="string">"num"</span>,<span class="number">100</span>);</span><br><span class="line">obj.put(<span class="string">"balance"</span>,<span class="number">1000</span>);</span><br><span class="line">obj.put(<span class="string">"is_vip"</span>,<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">StringWriter out = <span class="keyword">new</span> StringWriter();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    obj.writeJSONString(out);</span><br><span class="line">&#125;<span class="keyword">catch</span>(IOException e )&#123;</span><br><span class="line">    System.out.println(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##Spring boot framework -json support</p>
+<p>references<br><a href="http://json-b.net/docs/user-guide.html" target="_blank" rel="noopener">http://json-b.net/docs/user-guide.html</a></p>
+<p>spring boot support three different json libs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Spring Boot provides integration with three JSON mapping libraries:</span><br><span class="line"></span><br><span class="line">Gson</span><br><span class="line">Jackson</span><br><span class="line">JSON-B</span><br><span class="line">Jackson is the preferred and default library.</span><br><span class="line"></span><br><span class="line">spring.http.converters.preferred-json-mapper=jsonb</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Jackson2ObjectMapperBuilderCustomizer <span class="title">customJson</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> builder -&gt; &#123;</span><br><span class="line"></span><br><span class="line">        builder.indentOutput(<span class="keyword">true</span>);</span><br><span class="line">        builder.propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+                
+            </div>
+
+            <!-- Comments -->
             
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-</ul>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr>
@@ -225,51 +248,6 @@
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    
-
-                    
-                        <li>
-                            <a href="mailto:wangye3148@gmail.com" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    
-
-                    
-                </ul>
-                <p class="copyright text-muted">&copy; 2020 YE WANG<br></p>
-                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
-                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
-    <!-- After footer scripts -->
-    
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-
-<!-- Bootstrap -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-<!-- Gallery -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- Disqus Comments -->
-
-
-
-</body>
-
-</html>fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
