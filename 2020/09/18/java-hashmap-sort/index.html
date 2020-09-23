@@ -10,6 +10,9 @@
 
     <!--Description-->
     
+        <meta name="description" content="##Hashmap in java, specifiy the Comparator
+12345678910111213141516171819202122232425class ComparatorImpl implements Comparator&amp;lt;Map.Entry&amp;lt;Charact">
+    
 
     <!--Author-->
     
@@ -18,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="All categories">
+        <meta property="og:title" content="sort in hashmap">
     
 
     <!--Open Graph Description-->
@@ -40,7 +43,7 @@
 
     <!-- Title -->
     
-    <title>All categories - Ye&#39;s Study Blog</title>
+    <title>sort in hashmap - Ye&#39;s Study Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -142,91 +145,63 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-
-    <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>All categories</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
-                    <div class="post-preview">
-    <a href="/categories/old-posts-in-wordpress-blog/">
-        <h1 class="post-title archive">
-            old posts in wordpress blog
-        </h1>
-    </a>
-</div>
-                
-                    <div class="post-preview">
-    <a href="/categories/zookeeper/">
-        <h1 class="post-title archive">
-            zookeeper
-        </h1>
-    </a>
-</div>
-                
-                    <div class="post-preview">
-    <a href="/categories/ubuntu-LTS/">
-        <h1 class="post-title archive">
-            ubuntu LTS
-        </h1>
-    </a>
-</div>
-                
-                    <div class="post-preview">
-    <a href="/categories/leetcode/">
-        <h1 class="post-title archive">
-            leetcode
-        </h1>
-    </a>
-</div>
-                
-                    <div class="post-preview">
-    <a href="/categories/golang/">
-        <h1 class="post-title archive">
-            golang
-        </h1>
-    </a>
-</div>
-                
-                    <div class="post-preview">
-    <a href="/categories/java/">
-        <h1 class="post-title archive">
-            java
-        </h1>
-    </a>
-</div>
-                
-                    <div class="post-preview">
-    <a href="/categories/leetcode-binary-tree/">
-        <h1 class="post-title archive">
-            leetcode binary tree
-        </h1>
-    </a>
-</div>
-                
-                <div class="archive-before-pagination"></div>
+                <div class="post-heading">
+                    <h1>sort in hashmap</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-09-18
+                        
+                    </span>
+                </div>
             </div>
         </div>
     </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>##Hashmap in java, specifiy the Comparator</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComparatorImpl</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">Character</span>,<span class="title">Integer</span>&gt;&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Map.Entry&lt;Character,Integer&gt; a ,Map.Entry&lt;Character,Integer&gt; b)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> b.getValue() - a.getValue();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">frequencySort</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       StringBuilder ret = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">       HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">           map.put(s.charAt(i),  map.getOrDefault(s.charAt(i),<span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ArrayList&lt;Map.Entry&lt;Character,Integer&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(map.entrySet());</span><br><span class="line">       Collections.sort(list, <span class="keyword">new</span> ComparatorImpl());</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span>(Map.Entry&lt;Character,Integer&gt; c: list)&#123;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; c.getValue(); i++)&#123;</span><br><span class="line">               ret.append(c.getKey());</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> ret.toString();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>This is to define the sort algorithm,<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComparatorImpl</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">Character</span>,<span class="title">Integer</span>&gt;&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Map.Entry&lt;Character,Integer&gt; a ,Map.Entry&lt;Character,Integer&gt; b)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> b.getValue() - a.getValue();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>1 convert the hash Entry to array list, and sort.<br>2 there is other way, such as TreeSet</p>
+<p>Reference:<br><a href="https://www.baeldung.com/java-hashmap-sort" target="_blank" rel="noopener">https://www.baeldung.com/java-hashmap-sort</a></p>
 
 
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
 
 
-
+                </div>
+            
+        </div>
+    </div>
+</article>
 
     <!-- Footer -->
     <hr>
